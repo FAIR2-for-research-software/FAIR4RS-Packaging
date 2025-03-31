@@ -220,7 +220,7 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#introduction">Introduction</a></li>
-<li><a href="#overview-of-software-packaging">Overview of Software Packaging</a></li>
+<li><a href="#why-should-you-package-your-software">Why Should You Package Your Software?</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -381,7 +381,8 @@ Interoperable, Reusable) means that research software can now also
 benefit from the same general framework as research data, whilst
 accounting for their inherent differences, including software
 versioning, dependency management, writing documentation, and choosing
-an appropriate license.</p>
+an appropriate license. This is commonly referred to as the FAIR4RS
+principles.</p>
 <div id="discussion1" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
@@ -400,9 +401,9 @@ research software. In general, <code>software packaging</code>
 encompasses the process of collecting and configuring software
 components into a format that can be easily deployed on different
 computing environments.</p>
-<figure style="text-align: center;"><img src="../fig/package.png" alt="alt text for accessibility purposes" width="300" class="figure"><figcaption><em>A software package is like a box containing all the items you need
-for a particular activity, neatly packed together to transport to
-someone else</em>.
+<figure style="text-align: center;"><img src="../fig/package.png" alt="alt text for accessibility purposes" width="300" class="figure"><figcaption><em>Figure 1: A software package is like a box containing all the items
+you need for a particular activity, neatly packed together to transport
+to someone else</em>.
 </figcaption></figure><div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -430,12 +431,25 @@ package attribute in terms of the software attribute.</p>
 </div>
 </div>
 </div>
+<div id="accordionHint1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
+  <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
+</button>
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div class="accordion-body">
+<p>The above callout should help you think about a few different
+possible analogies.</p>
+</div>
+</div>
+</div>
+</div>
 <div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li><p>Box of items: The software itself (source code, data,
 images).</p></li>
@@ -450,84 +464,101 @@ situations.</p></li>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="overview-of-software-packaging">Overview of Software Packaging<a class="anchor" aria-label="anchor" href="#overview-of-software-packaging"></a></h2>
-<hr class="half-width"><p>The purpose of a software package is to install (or deploy) some
-source code in different systems that can be executed by other users.
-This has important considerations that you, as the developer, will have
-to take into account, including:</p>
-<ol style="list-style-type: decimal"><li><p><strong>Target Users</strong>: Who are you building this package
+</section><section><h2 class="section-heading" id="why-should-you-package-your-software">Why Should You Package Your Software?<a class="anchor" aria-label="anchor" href="#why-should-you-package-your-software"></a></h2>
+<hr class="half-width"><p>As we’ve touched on above, there are several benefits to packaging
+your software:</p>
+<ul><li><p><strong>Ease of installation</strong>: Instead of manually
+copying individual files and setting configurations, users can install
+the collective package using a package manager with very few steps
+involved.</p></li>
+<li><p><strong>Standardisation</strong>: Packaging enforces a standard
+structure and format for software, making it easier for users and
+developers to understand.</p></li>
+<li><p><strong>Research impact and collaboration</strong>: From a
+research impact perspective, software packaging ensures reproducibility,
+accessibility, and ease of dissemination to the wider research
+community.</p></li>
+</ul><p>Once you have convinced yourself that packaging your software is
+right for your project, there are some important questions that you, as
+the developer, should consider before getting started:</p>
+<ul><li><p><strong>Target Users</strong>: Who are you building this package
 for? Beginners, experienced users, or a specific domain? This will
 influence the level of detail needed in the documentation and the
-complexity of dependencies you include.</p></li>
+complexity of dependencies you may need to include.</p></li>
 <li><p><strong>Dependencies</strong>: What other Python libraries does
 your package rely on to function? What about hardware dependencies?
 Finding the right balance between including everything a user may need
 and keeping the package lightweight is important.</p></li>
 <li><p><strong>Testability</strong>: How will users test your package?
-Consider including unit tests and examples to demonstrate usage and
-ensure your code functions as expected.</p></li>
-</ol><p>Once you have thought about candidate solutions for these questions,
-you will be in a strong position to package your project.</p>
+You should consider including unit tests and examples to demonstrate
+usage and ensure your code functions as expected.</p></li>
+</ul><p>-. <strong>Scalability</strong>: As your project and software grows
+in size and complexity, how can you effectively handle the increased
+modules, dependencies and distribution requirements?</p>
+<p>Of course, this is not an exhaustive list, however, once you have
+thought about candidate solutions for these questions, you’re in a good
+position to start packaging your software.</p>
 <div class="section level3">
 <h3 id="packaging-in-python">Packaging in Python<a class="anchor" aria-label="anchor" href="#packaging-in-python"></a></h3>
 <p>The most basic directory structure of a Python package looks
 something like:</p>
 <pre><code>📦 my_project/
 ├── 📂 my_package/
-│   └── 📄 __init__.py
 └── 📄 pyproject.toml
 
 where
 
 - 📦 `my_project/` is the root directory of the project.
 - 📂 `my_package/` is the package directory containing the source code.
-- 📄 `__init__.py` is an initialisation script (note; this also lets Python know that there are importable modules in this directory).
-- 📄 `pyproject.toml` is a configuation file for setting up the package, containing basic metadata. Tools such as `setuptools` and `pip` use this script to configure how the package is built, distributed, and installed.</code></pre>
-<div id="callout2" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout</h3>
-<div class="callout-content">
-<p>For example, consider the times you have imported a library, such as
+- 📄 `pyproject.toml` is a configuation file for setting up the package, containing basic metadata.</code></pre>
+<p>Tools such as <code>setuptools</code> and <code>pip</code> use the
+<code>pyproject.toml</code> file to configure how the package is built,
+distributed, and installed. We’ll cover <code>pyproject.toml</code> in
+more depth in the next couple of episodes.</p>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Optional: What is __init__.py? </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div class="accordion-body">
+<p>At this point, it’s worth discussing the use of the
+<code>__init__.py</code> file that you might have come across before
+when packaging. Historically, the <code>__init__.py</code> script has
+been used to mark a directory as a Python package, allowing the
+contained modules to be imported (note; the use of double under lines in
+Python, often abbreviated to <code>dunder</code> lines, signal that this
+script should be “hidden” from users, helping distinguish this script
+from others.) It also contains any initialisation code for the package.
+The directory’s structure might look something like:</p>
+<pre><code>📦 my_project/
+├── 📂 my_package/
+│   └── 📄 __init__.py
+└── 📄 pyproject.toml</code></pre>
+<p>For instance, consider the times you have imported a package, such as
 <a href="../www.numpy.org">numpy</a>. The ability to write:</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">import</span> numpy</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">import</span> numpy</span></code></pre>
 </div>
-<p>is primarily enabled by the specific (modular) structuring of the
-numpy package. This includes presence of the <code>__init__.py</code>
-file, which signals to Python that the directory is a package, allowing
-to import its content using the <code>import</code> statement. The
-complete <code>import numpy</code> statement then means Python searches
-for the <code>numpy</code> package in its search path
-(<code>sys.path</code>) and loads its contents into the namespace under
-the name <code>numpy</code>.</p>
+<p>is enabled by the modular structuring of the numpy package. This
+includes presence of the <code>__init__.py</code> file, which signals to
+Python that the directory is a package, allowing to import its content
+using the <code>import</code> statement. The complete
+<code>import numpy</code> statement then means Python searches for the
+<code>numpy</code> package in its search path (<code>sys.path</code>)
+and loads its contents into the namespace under the name
+<code>numpy</code>. Packages that follow the folder structure above are
+often referred to as <strong>regular packages</strong>.</p>
+<p>However, in Python versions &gt;= 3.3, the concept of
+<strong>implicit namespace packages</strong> (see <a href="https://peps.python.org/pep-0420/" class="external-link">PEP 420</a>) was introduced.
+Namespace packages are commonly used to split a regular Python package
+(as described above) across multiple directories, which ultimately means
+the <code>__init__.py</code> file is technically not required to create
+any Python package. For the purposes of this course, we will omit the
+use of the <code>__init__.py</code> script.</p>
 </div>
-</div>
-</div>
-<div id="discussion2" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Discussion</h3>
-<div class="callout-content">
-<p>Another important point to highlight is the use of the
-<code>__init__.py</code> file in Python packages. In versions &gt;= 3.3,
-Python introduced the concept of implicit namespace packages (see <a href="https://peps.python.org/pep-0420/" class="external-link">PEP 420</a>). Namespace
-packages are a way of splitting a regular Python package (as described
-above) across multiple directories, which ultimately means the
-<code>__init__.py</code> file is not required to create a package.
-However, namespace packages are not commonly used, and it is common
-practise to still include <code>__init__.py</code> script to create
-“regular” packages.</p>
-<p>Apart from the reasons mentioned above, what other advantages can you
-think of that would enable software development best practises by
-including the <code>__init__.py</code> script? Can you find out which
-kind of projects benefit from namespace packages?</p>
 </div>
 </div>
 </div>
@@ -545,18 +576,29 @@ to provide better organisation, readability, and compatibility?</p>
 </div>
 </div>
 </div>
+<div id="accordionHint2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
+  <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
+</button>
+<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
+<div class="accordion-body">
+<p>Use the emoji folder structure above to get you started.</p>
+</div>
+</div>
+</div>
+</div>
 <div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>A possible improvement could be to include the following to your
 package:</p>
 <pre><code>📦 my_project/
 ├── 📂 my_package/
-│   └── 📄 __init__.py
 ├── 📂 tests/
 ├── 📄 pyproject.toml
 ├── 📄 README.md
@@ -598,7 +640,7 @@ user documentation, and test scripts all support to ensure
 reproducibility.</p></li>
 <li><p>The purpose of a software package is to install source code for
 execution on various systems, with considerations including target
-users, dependencies, and testability.</p></li>
+users, dependencies, testability and scalability.</p></li>
 </ul></div>
 </div>
 </div>

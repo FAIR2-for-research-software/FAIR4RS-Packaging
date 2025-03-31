@@ -387,7 +387,7 @@ user documentation, and test scripts all support to ensure
 reproducibility.</p></li>
 <li><p>The purpose of a software package is to install source code for
 execution on various systems, with considerations including target
-users, dependencies, and testability.</p></li>
+users, dependencies, testability and scalability.</p></li>
 </ul></section><section id="package-file-history"><h2 class="section-heading"><a href="package-file-history.html">Package File History</a></h2>
 <hr class="half-width">
 <ul>
@@ -421,13 +421,12 @@ and a configuration file</li>
 and bug fixes of a software package over time. It ensures that changes
 are documented and managed systematically, aiding in reproducibility and
 reliability of the software.</p></li>
-<li><p>Tools like Poetry and Python Semantic Release help automate the
-version bumping process, reducing manual errors and ensuring that
-version numbers are updated consistently across all project
-files.</p></li>
-<li><p>Once a version is publicly released, it should not be altered
-retroactively. Any necessary fixes should be addressed through
-subsequent releases.</p></li>
+<li><p>Tools like <code>setuptools_scm</code> help automate the version
+bumping process, reducing manual errors and ensuring that version
+numbers are updated consistently across all project files.</p></li>
+<li><p>Versioning enables users to track code changes and dependencies,
+allowing reliable recreation of specific software versions, and further
+aiding the reproducibility of your software.</p></li>
 </ul></section><section id="releasing"><h2 class="section-heading"><a href="releasing.html">Publishing Python Packages</a></h2>
 <hr class="half-width">
 <ul>

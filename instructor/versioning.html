@@ -257,7 +257,7 @@
       <div class="accordion-body">
         <ul><li><a href="#introduction">Introduction</a></li>
 <li><a href="#semantic-versioning">Semantic Versioning</a></li>
-<li><a href="#tools-for-version-bumping">Tools for Version Bumping</a></li>
+<li><a href="#dynamic-versioning-using-setuptools_scm">Dynamic Versioning using setuptools_scm</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -368,11 +368,8 @@ software releases?</li>
 <ul><li>Explain why versioning is crucial for software development,
 particularly in maintaining reproducibility and ensuring consistent
 behaviour of the code after changes.</li>
-<li>Understand how to use tools like Poetry and Python Semantic Release
-for automating the version bumping process in Python projects.</li>
-<li>Be able to create and integrate custom scripts or CI/CD pipelines
-for automated version bumping based on commit messages and predefined
-rules.</li>
+<li>Understand how to use <code>setuptools_scm</code> for automating
+version bumping in Python projects.</li>
 </ul></div>
 </div>
 </div>
@@ -420,12 +417,12 @@ Y when you add functionality in a backwards compatible manner,
 Z when you make backwards compatible bug fixes.
 
 </code></pre>
-<div id="api" class="callout">
+<div id="recall-api" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="api" class="callout-inner">
-<h3 class="callout-title">API</h3>
+<div id="recall-api" class="callout-inner">
+<h3 class="callout-title">Recall: API</h3>
 <div class="callout-content">
 <p>An Application Programming Interface (API) is the name given to the
 way different programs or parts of a program to communicate with each
@@ -530,7 +527,7 @@ your reasoning.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <p>Think about whether the new feature introduces any breaking changes
 for existing users.</p>
@@ -543,7 +540,7 @@ for existing users.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>According to semantic versioning, since the new feature adds
 functionality in a backward-compatible manner, the version should be
@@ -553,7 +550,44 @@ increase.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="tools-for-version-bumping">Tools for Version Bumping<a class="anchor" aria-label="anchor" href="#tools-for-version-bumping"></a></h2>
+<div id="versioning-vs-version-control" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="versioning-vs-version-control" class="callout-inner">
+<h3 class="callout-title">Versioning vs Version Control</h3>
+<div class="callout-content">
+<p>Note; although they share similarities, you should not confuse
+software versioning and version controlling your software. The table
+below outlines some similarities and differences to help you
+differentiate them:</p>
+<table class="table"><colgroup><col width="5%"><col width="47%"><col width="46%"></colgroup><thead><tr class="header"><th>Aspect</th>
+<th>Version Control</th>
+<th>Versioning</th>
+</tr></thead><tbody><tr class="odd"><td><strong>Purpose</strong></td>
+<td>Tracking changes, enhancing collaboration, and maintaining a history
+of revisions</td>
+<td>Differentiating between various stages of software development or
+releases, ensuring clear identification of updates and changes</td>
+</tr><tr class="even"><td><strong>Features</strong></td>
+<td>Branching, conflict resolution, merging</td>
+<td>Version numbering, compatibility guidelines, and release notes</td>
+</tr><tr class="odd"><td><strong>Example</strong></td>
+<td>Git</td>
+<td>Semantic Versioning</td>
+</tr><tr class="even"><td><strong>Benefits</strong></td>
+<td>Collaboration, code integrity, and project management</td>
+<td>Communication of changes (major, minor, patch), transparency, and
+compatibility</td>
+</tr><tr class="odd"><td><strong>Challenges</strong></td>
+<td>Managing conflicts and merges with multiple contributors, ensuring
+training for teams, and integrating within existing processes</td>
+<td>Ensuring backward compatibility and avoiding confusion with version
+numbers that accurately reflect the changes</td>
+</tr></tbody></table></div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="dynamic-versioning-using-setuptools_scm">Dynamic Versioning using setuptools_scm<a class="anchor" aria-label="anchor" href="#dynamic-versioning-using-setuptools_scm"></a></h2>
 <hr class="half-width"><p>At this point, you might be thinking; “<strong>Do I have to manually
 update the version number in of my package every time I release a new
 version?</strong>” Thankfully, the answer is no. Often, the version
@@ -562,123 +596,16 @@ locations within your project, for example, in your <code>.toml</code>
 file and separately in your documentation. This means that manually
 updating every location for every release you have can be extremely
 cumbersome and prone to human-error, and therefore, you should avoid
-manually updating your versions. There are several tools that can help
-you manage updating your package versions.</p>
-<div class="section level3">
-<h3 id="poetry">1. Poetry<a class="anchor" aria-label="anchor" href="#poetry"></a></h3>
-<p><a href="https://python-poetry.org/" class="external-link">Poetry</a> is a dependency
-management and packaging tool for Python projects. It aims to simplify
-the process of managing dependencies, packaging projects, and publishing
-them to online repositories. For this, you will have to decide what
-release type (major, minor patch) reflects the changes in your source
-code. For projects that are managed by Poetry, the version number is in
-your <code>pyproject.toml</code> file. For instance, your
-<code>pyproject.toml</code> file may look like:</p>
-<div class="codewrapper sourceCode" id="cb2">
-<h3 class="code-label">TOML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode toml" tabindex="0"><code class="sourceCode toml"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="kw">[tool.poetry]</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my_project"</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A simple example project"</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[</span><span class="st">"Your Name"</span><span class="op">]</span></span></code></pre>
-</div>
-<p>Once you have decided on the type of release (e.g. patch), you can
-simply run:</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">$</span> poetry version patch</span></code></pre>
-</div>
-<p>This bumps the version in your toml file from 0.1.0 to 0.1.1, and
-changes your <code>.toml</code> file to:</p>
-<div class="codewrapper sourceCode" id="cb4">
-<h3 class="code-label">TOML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode toml" tabindex="0"><code class="sourceCode toml"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="kw">[tool.poetry]</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my_project"</span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.1"</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A simple example project"</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[</span><span class="st">"Your Name"</span><span class="op">]</span></span></code></pre>
-</div>
-<div id="callout4" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout</h3>
-<div class="callout-content">
-<p>Like a <code>venv</code>, Poetry also enables creating virtual
-environments, but it provides a more comprehensive toolset for
-dependency and environment management, especially when it comes to
-packaging and reproducibility. For instance, Poetry’s
-<code>poetry.lock</code> file ensures that exact versions of
-dependencies are used across different environments. This is one way
-research software reproducibility can be maintained.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="section level3">
-<h3 id="python-semantic-release">2. Python Semantic Release<a class="anchor" aria-label="anchor" href="#python-semantic-release"></a></h3>
-<p><a href="https://python-semantic-release.readthedocs.io/en/latest/" class="external-link">Python
-Semantic Release</a> is a tool that can automatically bump versions
-based on keywords found in commit messages using Git. The core idea is
-to use a standardised commit syntax that allows the tool to parse and
-automatically determine how to increment the version number. The default
-commit syntax used by Python Semantic Release is the Angular commit
-style, which has the following form:</p>
-<pre><code>&lt;type&gt;(optional scope): brief overview in present tense
-
-(optional body: explains motivation for the change)
-
-(optional footer: note BREAKING CHANGES here, and issues to be closed)
-</code></pre>
-<p>The tag <code>&lt;type&gt;</code> highlights the kind of change that
-is being made. Examples of this include <code>feat</code> for a new
-feature, <code>fix</code> for a bug fix, <code>docs</code> for
-documentation changes and so on. For more information, please refer to
-the Angular commit style <a href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commit-message-format" class="external-link">documentation</a>.</p>
-<p>The <code>(optional scope)</code> is a keyword that provides
-additional context for where the change was made in your code base. It
-can relate to any information in your development workflow, such as the
-function or module that was changed.</p>
-<p>Putting this together, once you have git added your file(s), a commit
-message that would trigger Python Semantic Release to bump your package
-from version 1.1 to version 1.2 due to a new feature could look
-something like:</p>
-<div class="codewrapper sourceCode" id="cb6">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">$</span> git commit <span class="at">-m</span> <span class="st">"feat(add_estimator): add estimator method for linear regression"</span></span></code></pre>
-</div>
-<p>Once you have committed, you can run
-<code>$ semantic-release version</code> in your terminal to detect the
-semantically correct next version that should be applied to your
-project, or <code>$ semantic-release publish</code> to publish to your
-choice of version control system (e.g. GitHub).</p>
-</div>
-<div class="section level3">
-<h3 id="creating-your-own-versioning-tool">3. Creating your own Versioning Tool<a class="anchor" aria-label="anchor" href="#creating-your-own-versioning-tool"></a></h3>
-<p>You can also create your own custom version bump tool using
-continuous integration (CI) / continuous deployment (CD) pipelines on
-various version control systems (such as GitHub) to automate your
-package’s versioning. For instance, you might develop a custom script
-that is executed to analyse commit messages, and whenever a push is made
-to the remote repository, the CI/CD pipeline is triggered. The script
-can parse the commit messages and determines the type of changes made
-(e.g., new features, bug fixes, maintenance tasks). Based on predefined
-rules, it decides whether to increment the major, minor, or patch
-version. Once the script determines the appropriate version bump (major,
-minor, or patch), you can specify where to update the version number in
-the project’s configuration files (e.g. <code>pyproject.toml</code>,
-<code>/docs</code>, <code>/tests</code>, and so on.). After updating the
-version number, the script would create a new commit with the updated
-version number. Ultimately, the script tags the commit as the new
-release version. This tag can be used for referencing specific releases
-in the future.</p>
+manually updating your versions. Fortunately, the
+<code>setuptools</code> library we looked at in previous episodes can
+help us automate these tasks.</p>
+<p>The most natural and simplest solution is to use <a href="https://github.com/pypa/setuptools-scm" class="external-link">setuptools_scm</a>
+(abbreviated as Setuptools Semantic Versioning), which is an extension
+of the <code>setuptools</code> library. <code>setuptools_scm</code>
+simplifies versioning by dynamically generating version numbers based on
+your version control system (e.g. <code>git</code>). It can extract
+Python package versions using <code>git</code> metadata instead of
+having to manually declare them yourself.</p>
 <div id="callout5" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -686,43 +613,134 @@ in the future.</p>
 <div class="callout-inner">
 <h3 class="callout-title">Callout</h3>
 <div class="callout-content">
-<p>As a reminder, Continuous Integration/Continuous Deployment is a
-software development practice that involves automating the process of
-integrating code changes into a shared repository (CI) and then
-automatically deploying those changes to production or other
-environments (CD). GitHub Actions is a common example of a CI/CD tool,
-which allow developers to seamlessly automate workflows directly within
-their GitHub repositories.</p>
+<p>You can install <code>setuptools-scm</code> using
+<code>pip install setuptool-scm</code>.</p>
 </div>
 </div>
 </div>
-<div id="challenge-2-version-bumping-your-package" class="callout challenge">
+<p>Following the installation, we can then amend declare the
+<code>setuptools-scm</code> variables in our project’s
+<code>pyproject.toml</code> file:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">TOML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode toml" tabindex="0"><code class="sourceCode toml"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="kw">[build-system]</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"setuptools&gt;=64"</span><span class="op">,</span> <span class="st">"setuptools-scm&gt;=8"</span><span class="op">]</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"setuptools.build_meta"</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="kw">[project]</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="dt">dynamic</span> <span class="op">=</span> <span class="op">[</span><span class="st">"version"</span><span class="op">]</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="kw">[tool.setuptools_scm]</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="dt">version_file</span> <span class="op">=</span> <span class="st">"src/_version.py"</span></span></code></pre>
+</div>
+<p>Let’s break down the instructions above. As we’ve seen before, the
+<code>[build-system]</code> defines the build dependencies, ensuring
+<code>setuptools</code> and <code>setuptools_scm</code> are installed
+for building the project. When you run a build tool (like
+<code>pip</code> or <code>build</code>), it will first install these
+dependencies to handle the build process. The <code>[project]</code>
+section provides metadata about the project and its configuration.
+Notice that the <code>version</code> field is commented out to highlight
+that the version will not be statically defined, but instead, it will be
+dynamically determined by <code>setuptools_scm</code> in the line below
+that contains <code>dynamic = ["version"]</code>. Finally,
+<code>[tool.setuptools_scm]</code> specifically configures
+<code>setuptools_scm</code>. The <code>version_file</code> field should
+contain the path to where <code>setuptools_scm</code> will write the
+version information, though, be sure you substitute in the path of your
+own packge name.. By specifying a <code>version_file</code>, you
+instruct <code>setuptools_scm</code> to create or update this file with
+version information. For further details on the usage of
+<code>setuptools_scm</code>, you can refer to the <a href="https://setuptools-scm.readthedocs.io/en/stable/" class="external-link">documentation</a>.</p>
+<p>Under its hood, <code>setuptools_scm</code> is designed automatically
+to integrate with Git, and by default, uses Git tags to manage version
+numbers. It looks at the Git history of your project and extracts the
+version number from the most recent Git tag. If no Git tags are found,
+it generates one for you. Overall, once you’ve set up
+<code>setuptools_scm</code> in your <code>pyproject.toml</code> file,
+the workflow to version bump your package will look like:</p>
+<ol style="list-style-type: decimal"><li>
+<strong>Commit your changes</strong>:
+<ul><li>
+<p>Add your changes and commit them in your Git repository.</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Your changes"</span></span></code></pre>
+</div>
+</li>
+</ul></li>
+<li>
+<strong>Tag a new version</strong>:
+<ul><li>
+<p>Create a new Git tag to bump the version (e.g., from
+<code>v1.0.0</code> to <code>v1.1.0</code>):</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> tag v1.1.0</span></code></pre>
+</div>
+</li>
+</ul></li>
+<li>
+<strong>Push the tag to your remote repo
+(e.g. GitHub)</strong>:</li>
+</ol><ul><li>
+<p>Push the new tag to your remote Git repository if applicable:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">git</span> push origin v0.1.0</span></code></pre>
+</div>
+</li>
+</ul><ol start="4" style="list-style-type: decimal"><li>
+<strong>Rebuild/reinstall your package</strong>:
+<ul><li>
+<p>When you build or install the package,
+<code>setuptools-scm</code> will automatically pick up the new version
+from the Git tag.</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">pip</span> install .</span></code></pre>
+</div>
+<p>Following this, you can confirm your new version by, for example,
+looking into your <code>src/_version.py</code> file or printing your
+package’s <code>__version__</code> attribute. Ultimately, this means
+that your package’s Git tags, <code>__version__</code>,
+<code>pyproject.toml</code> and any other file containing your package
+version version will automatically updated and synchronised with each
+other. So when users or other developers are using your framework,
+they’re able to accurately tracking any code changes and dependencies,
+allowing them to reliably recreate specific versions of your software at
+any point in time.</p>
+</li>
+</ul></li>
+</ol><div id="callout6" class="callout">
 <div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
+<i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="challenge-2-version-bumping-your-package" class="callout-inner">
-<h3 class="callout-title">Challenge 2: Version Bumping your Package</h3>
+<div class="callout-inner">
+<h3 class="callout-title">Callout</h3>
 <div class="callout-content">
-<p>Following the instructions above, install <code>Poetry</code> and use
-this to update your Fibonacci package you have build based on the
-changes you have made to your code.</p>
-</div>
-</div>
-</div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
-</button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
-<div class="accordion-body">
-<p>Simply run:</p>
-<ol style="list-style-type: decimal"><li><code>$ pip install poetry</code></li>
-<li>Make changes to your code</li>
-<li>Run <code>$ poetry version minor</code> to change the minor version
-number to reflect the changes in your code.</li>
+<p>Although <code>setuptool_scm</code> is the most common and simplest
+tool for dynamic versioning, there are many alternatives that you may
+consider in your own project. These include:</p>
+<ol style="list-style-type: decimal"><li><p><a href="https://pdm-project.org/en/latest/" class="external-link">PDM</a> - this is a
+Python package and dependency manager, which also supports the latest
+PEP standards.</p></li>
+<li><p><a href="https://hatch.pypa.io/latest/" class="external-link">Hatch</a> - used for
+managing and publishing Python projects, and handling virtual
+environments and versioning. It’s also best suited for multi-environment
+and cross-version testing setups.</p></li>
+<li><p><a href="https://rye.astral.sh/" class="external-link">Rye</a> - a lightweight Python
+project manager designed to simplify dependency management and virtual
+environments. This is generally ideal for users looking for a
+streamlined workflow.</p></li>
 </ol></div>
-</div>
 </div>
 </div>
 <div id="keypoints1" class="callout keypoints">
@@ -736,13 +754,12 @@ number to reflect the changes in your code.</li>
 and bug fixes of a software package over time. It ensures that changes
 are documented and managed systematically, aiding in reproducibility and
 reliability of the software.</p></li>
-<li><p>Tools like Poetry and Python Semantic Release help automate the
-version bumping process, reducing manual errors and ensuring that
-version numbers are updated consistently across all project
-files.</p></li>
-<li><p>Once a version is publicly released, it should not be altered
-retroactively. Any necessary fixes should be addressed through
-subsequent releases.</p></li>
+<li><p>Tools like <code>setuptools_scm</code> help automate the version
+bumping process, reducing manual errors and ensuring that version
+numbers are updated consistently across all project files.</p></li>
+<li><p>Versioning enables users to track code changes and dependencies,
+allowing reliable recreation of specific software versions, and further
+aiding the reproducibility of your software.</p></li>
 </ul></div>
 </div>
 </div>
@@ -750,7 +767,6 @@ subsequent releases.</p></li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/creating-packages.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
