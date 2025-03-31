@@ -19,8 +19,8 @@ editor_options:
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Explain why versioning is crucial for software development, particularly in maintaining reproducibility and ensuring consistent behaviour of the code after changes.
-- Understand how to use tools like Poetry and Python Semantic Release for automating the version bumping process in Python projects.
-- Be able to create and integrate custom scripts or CI/CD pipelines for automated version bumping based on commit messages and predefined rules.
+- Understand how to use `setuptools_scm` for automating version bumping in Python projects.
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -33,6 +33,7 @@ In previous episodes, we developed a basic Python package to demonstrate the imp
 One of the pitfalls of packaging is to fall into poor naming conventions, even for scripts. For instance, how many times have you worked on scripts that was named `my_script_v1.py` or `my_script_final_version.py`? What were your main challenges with this approach, and what alternative solutions can you think of to circumvent this naive approach?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 ## Semantic Versioning
 
@@ -58,7 +59,7 @@ Z when you make backwards compatible bug fixes.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
-# API
+# Recall: API
 
 An Application Programming Interface (API) is the name given to the way different programs or parts of a program to communicate with each other. It provides a set of functions, methods that can be used to interact with a piece of software or data services. Commonly, APIs are used within web-based applications to enable users to receive information from a given service, such as logging into social media accounts, creating weather widgets, or finding geographical locations. 
 
@@ -121,106 +122,96 @@ According to semantic versioning, since the new feature adds functionality in a 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Tools for Version Bumping
-
-At this point, you might be thinking; "__Do I have to manually update the version number in of my package every time I release a new version?__" Thankfully, the answer is no. Often, the version number associated to your package will typically be in multiple locations within your project, for example, in your `.toml` file and separately in your documentation. This means that manually updating every location for every release you have can be extremely cumbersome and prone to human-error, and therefore, you should avoid manually updating your versions. There are several tools that can help you manage updating your package versions.
-
-
-### 1. Poetry
-
-[Poetry](https://python-poetry.org/) is a dependency management and packaging tool for Python projects. It aims to simplify the process of managing dependencies, packaging projects, and publishing them to online repositories. For this, you will have to decide what release type (major, minor patch) reflects the changes in your source code. For projects that are managed by Poetry, the version number is in your `pyproject.toml` file. For instance, your `pyproject.toml` file may look like:
-
-```toml
-
-[tool.poetry]
-name = "my_project"
-version = "0.1.0"
-description = "A simple example project"
-authors = ["Your Name"]
-
-```
-Once you have decided on the type of release (e.g. patch), you can simply run:
-
-```bash
-$ poetry version patch
-
-```
-
-This bumps the version in your toml file from 0.1.0 to 0.1.1, and changes your `.toml` file to:
-
-```toml
-
-[tool.poetry]
-name = "my_project"
-version = "0.1.1"
-description = "A simple example project"
-authors = ["Your Name"]
-
-```
-
 ::::::::::::::::::::::::::::::::::::: callout
 
-Like a `venv`, Poetry also enables creating virtual environments, but it provides a more comprehensive toolset for dependency and environment management, especially when it comes to packaging and reproducibility. For instance, Poetry's `poetry.lock` file ensures that exact versions of dependencies are used across different environments. This is one way research software reproducibility can be maintained. 
+# Versioning vs Version Control
 
-::::::::::::::::::::::::::::::::::::::::::::::::
+Note; although they share similarities, you should not confuse software versioning and version controlling your software. The table below outlines some similarities and differences to help you differentiate them:
 
-### 2. Python Semantic Release
-
-[Python Semantic Release](https://python-semantic-release.readthedocs.io/en/latest/) is a tool that can automatically bump versions based on keywords found in commit messages using Git. The core idea is to use a standardised commit syntax that allows the tool to parse and automatically determine how to increment the version number. The default commit syntax used by Python Semantic Release is the Angular commit style, which has the following form:
-
-```
-<type>(optional scope): brief overview in present tense
-
-(optional body: explains motivation for the change)
-
-(optional footer: note BREAKING CHANGES here, and issues to be closed)
-
-```
-
-The tag ``<type>`` highlights the kind of change that is being made. Examples of this include ``feat`` for a new feature, ``fix`` for a bug fix, ``docs`` for documentation changes and so on. For more information, please refer to the Angular commit style [documentation](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commit-message-format).
-
-The ``(optional scope)`` is a keyword that provides additional context for where the change was made in your code base. It can relate to any information in your development workflow, such as the function or module that was changed.
-
-Putting this together, once you have git added your file(s), a commit message that would trigger Python Semantic Release to bump your package from version 1.1 to version 1.2 due to a new feature could look something like:
-
-```bash
-$ git commit -m "feat(add_estimator): add estimator method for linear regression"
-
-```
-
-Once you have committed, you can run ``$ semantic-release version`` in your terminal to detect the semantically correct next version that should be applied to your project,  or  ``$ semantic-release publish`` to publish to your choice of version control system (e.g. GitHub).
-
-### 3. Creating your own Versioning Tool
-
-You can also create your own custom version bump tool using continuous integration (CI) / continuous deployment (CD) pipelines on various version control systems (such as GitHub) to automate your package's versioning.  For instance, you might develop a custom script that is executed to analyse commit messages, and whenever a push is made to the remote repository, the CI/CD pipeline is triggered. The script can parse the commit messages and determines the type of changes made (e.g., new features, bug fixes, maintenance tasks). Based on predefined rules, it decides whether to increment the major, minor, or patch version. Once the script determines the appropriate version bump (major, minor, or patch), you can specify where to update the version number in the project's configuration files (e.g. `pyproject.toml`, `/docs`, `/tests`, and so on.). After updating the version number, the script would create a new commit with the updated version number. Ultimately, the script tags the commit as the new release version. This tag can be used for referencing specific releases in the future.
-
-
-::::::::::::::::::::::::::::::::::::: callout
-
-As a reminder, Continuous Integration/Continuous Deployment is a software development practice that involves automating the process of integrating code changes into a shared repository (CI) and then automatically deploying those changes to production or other environments (CD). GitHub Actions is a common example of a CI/CD tool, which allow developers to seamlessly automate workflows directly within their GitHub repositories.
+| Aspect       | Version Control                                                                                                 | Versioning                                                                                                   |
+|--------------|-----------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| **Purpose**  | Tracking changes, enhancing collaboration, and maintaining a history of revisions                               | Differentiating between various stages of software development or releases, ensuring clear identification of updates and changes |
+| **Features** | Branching, conflict resolution, merging                                                                         | Version numbering, compatibility guidelines, and release notes                                                |
+| **Example**  | Git                                                                                                             | Semantic Versioning                                                                                           |
+| **Benefits** | Collaboration, code integrity, and project management                                                           | Communication of changes (major, minor, patch), transparency, and compatibility                               |
+| **Challenges** | Managing conflicts and merges with multiple contributors, ensuring training for teams, and integrating within existing processes | Ensuring backward compatibility and avoiding confusion with version numbers that accurately reflect the changes |
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
+## Dynamic Versioning using setuptools_scm
 
-::::::::::::::::::::::::::::::::::::: challenge
+At this point, you might be thinking; "__Do I have to manually update the version number in of my package every time I release a new version?__" Thankfully, the answer is no. Often, the version number associated to your package will typically be in multiple locations within your project, for example, in your `.toml` file and separately in your documentation. This means that manually updating every location for every release you have can be extremely cumbersome and prone to human-error, and therefore, you should avoid manually updating your versions. Fortunately, the `setuptools` library we looked at in previous episodes can help us automate these tasks.
 
-## Challenge 2: Version Bumping your Package
+The most natural and simplest solution is to use [setuptools_scm](https://github.com/pypa/setuptools-scm) (abbreviated as Setuptools Semantic Versioning), which is an extension of the `setuptools` library. `setuptools_scm` simplifies versioning by dynamically generating version numbers based on your version control system (e.g. `git`). It can extract Python package versions using `git` metadata instead of having to manually declare them yourself. 
 
-Following the instructions above, install `Poetry` and use this to update your Fibonacci package you have build based on the changes you have made to your code.
+::::::::::::::::::::::::::::::::::::: callout
+
+You can install `setuptools-scm` using `pip install setuptool-scm`.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+Following the installation, we can then amend declare the `setuptools-scm` variables in our project's `pyproject.toml` file:
 
 
-:::::::::::::::::::::::: solution
+```toml
 
-## Solution
+[build-system]
+requires = ["setuptools>=64", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
 
-Simply run:
+[project]
+dynamic = ["version"]
 
-1. ``$ pip install poetry``
-2. Make changes to your code
-3. Run ``$ poetry version minor`` to change the minor version number to reflect the changes in your code.
+[tool.setuptools_scm]
+version_file = "src/_version.py"
 
-:::::::::::::::::::::::::::::::::
+```
+
+Let's break down the instructions above. As we've seen before, the `[build-system]` defines the build dependencies, ensuring `setuptools` and `setuptools_scm` are installed for building the project. When you run a build tool (like `pip` or `build`), it will first install these dependencies to handle the build process. The `[project]` section provides metadata about the project and its configuration. Notice that the `version` field is commented out to highlight that the version will not be statically defined, but instead, it will be dynamically determined by `setuptools_scm` in the line below that contains `dynamic = ["version"]`. Finally, `[tool.setuptools_scm]` specifically configures `setuptools_scm`. The `version_file` field should contain the path to where `setuptools_scm` will write the version information, though, be sure you substitute in the path of your own packge name.. By specifying a `version_file`, you instruct `setuptools_scm` to create or update this file with version information. For further details on the usage of `setuptools_scm`, you can refer to the [documentation](https://setuptools-scm.readthedocs.io/en/stable/).
+
+Under its hood, `setuptools_scm` is designed automatically to integrate with Git, and by default, uses Git tags to manage version numbers. It looks at the Git history of your project and extracts the version number from the most recent Git tag. If no Git tags are found, it generates one for you. Overall, once you've set up `setuptools_scm` in your `pyproject.toml` file, the workflow to version bump your package will look like:
+
+
+
+1. **Commit your changes**:
+   - Add your changes and commit them in your Git repository.
+     ```bash
+     git add .
+     git commit -m "Your changes"
+     ```
+
+2. **Tag a new version**:
+   - Create a new Git tag to bump the version (e.g., from `v1.0.0` to `v1.1.0`):
+     ```bash
+     git tag v1.1.0
+     ```
+
+3. **Push the tag to your remote repo (e.g. GitHub)**:
+  - Push the new tag to your remote Git repository if applicable:
+
+     ```bash
+     git push origin v0.1.0
+     ```
+
+4. **Rebuild/reinstall your package**:
+   - When you build or install the package, `setuptools-scm` will automatically pick up the new version from the Git tag.
+     ```bash
+     pip install .
+     ```
+Following this, you can confirm your new version by, for example, looking into your `src/_version.py` file or printing your package's `__version__` attribute. Ultimately, this means that your package's Git tags, `__version__`, `pyproject.toml` and any other file containing your package version version will automatically updated and synchronised with each other. So when users or other developers are using your framework, they're able to accurately tracking any code changes and dependencies, allowing them to reliably recreate specific versions of your software at any point in time.
+
+
+::::::::::::::::::::::::::::::::::::: callout
+
+Although `setuptool_scm` is the most common and simplest tool for dynamic versioning, there are many alternatives that you may consider in your own project. These include:
+
+1. [PDM](https://pdm-project.org/en/latest/) - this is a Python package and dependency manager, which also supports the latest PEP standards.
+
+2. [Hatch](https://hatch.pypa.io/latest/) - used for managing and publishing Python projects, and handling virtual environments and versioning. It's also best suited for multi-environment and cross-version testing setups.
+
+3. [Rye](https://rye.astral.sh/) - a lightweight Python project manager designed to simplify dependency management and virtual environments. This is generally ideal for users looking for a streamlined workflow.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
@@ -228,9 +219,10 @@ Simply run:
 
 - Versioning is crucial for tracking the development, improvements, and bug fixes of a software package over time. It ensures that changes are documented and managed systematically, aiding in reproducibility and reliability of the software.
 
-- Tools like Poetry and Python Semantic Release help automate the version bumping process, reducing manual errors and ensuring that version numbers are updated consistently across all project files.
+- Tools like `setuptools_scm` help automate the version bumping process, reducing manual errors and ensuring that version numbers are updated consistently across all project files.
 
-- Once a version is publicly released, it should not be altered retroactively. Any necessary fixes should be addressed through subsequent releases.
+- Versioning enables users to track code changes and dependencies, allowing reliable recreation of specific software versions, and further aiding the reproducibility of your software.
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

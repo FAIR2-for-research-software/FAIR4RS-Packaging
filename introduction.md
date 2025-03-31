@@ -25,7 +25,7 @@ editor_options:
 
 ## Introduction
 
-One of the most challenging aspects of research is reproducibility. This necessitates the need to ensure that both research data and research software adhere to a set of guidelines that better enable open research practices across all disciplines. The recent adaptation of the original **FAIR** principles (Findable, Accessible, Interoperable, Reusable) means that research software can now also benefit from the same general framework as research data, whilst accounting for their inherent differences, including software versioning, dependency management, writing documentation, and choosing an appropriate license.
+One of the most challenging aspects of research is reproducibility. This necessitates the need to ensure that both research data and research software adhere to a set of guidelines that better enable open research practices across all disciplines. The recent adaptation of the original **FAIR** principles (Findable, Accessible, Interoperable, Reusable) means that research software can now also benefit from the same general framework as research data, whilst accounting for their inherent differences, including software versioning, dependency management, writing documentation, and choosing an appropriate license. This is commonly referred to as the FAIR4RS principles.
 
 
 ::::::::::::::::::::::::::::::::::::: discussion
@@ -38,7 +38,7 @@ Software packaging is one of the core elements of reproducible research software
 
 <figure style="text-align: center;">
     <img src="fig/package.png" alt="alt text for accessibility purposes" width="300"/>
-    <figcaption><em>A software package is like a box containing all the items you need for a particular activity, neatly packed together to transport to someone else</em>.</figcaption>
+    <figcaption><em>Figure 1: A software package is like a box containing all the items you need for a particular activity, neatly packed together to transport to someone else</em>.</figcaption>
 </figure>
 
 ::::::::::::::::::::::::::::::::::::: callout
@@ -53,6 +53,14 @@ Think about what a `package` is in general; you typically have a box of items th
 
 Using the analogy in the callout above, provide an example for each package attribute in terms of the software attribute.
 
+
+:::::::::::::::::::::::: hint
+
+## Hint
+
+The above callout should help you think about a few different possible analogies.
+
+:::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::: solution
 
@@ -71,17 +79,27 @@ Using the analogy in the callout above, provide an example for each package attr
 
 
 
-## Overview of Software Packaging
+## Why Should You Package Your Software?
 
-The purpose of a software package is to install (or deploy) some source code in different systems that can be executed by other users. This has important considerations that you, as the developer, will have to take into account, including:
+As we've touched on above, there are several benefits to packaging your software:
 
-1. **Target Users**: Who are you building this package for? Beginners, experienced users, or a specific domain? This will influence the level of detail needed in the documentation and the complexity of dependencies you include.
+-  **Ease of installation**: Instead of manually copying individual files and setting configurations, users can install the collective package using a package manager with very few steps involved.
 
-2. **Dependencies**: What other Python libraries does your package rely on to function? What about hardware dependencies? Finding the right balance between including everything a user may need and keeping the package lightweight is important.
+- **Standardisation**: Packaging enforces a standard structure and format for software, making it easier for users and developers to understand.
 
-3. **Testability**: How will users test your package? Consider including unit tests and examples to demonstrate usage and ensure your code functions as expected.
+- **Research impact and collaboration**: From a research impact perspective, software packaging ensures reproducibility, accessibility, and ease of dissemination to the wider research community.
 
-Once you have thought about candidate solutions for these questions, you will be in a strong position to package your project.
+Once you have convinced yourself that packaging your software is right for your project, there are some important questions that you, as the developer, should consider before getting started:
+
+- **Target Users**: Who are you building this package for? Beginners, experienced users, or a specific domain? This will influence the level of detail needed in the documentation and the complexity of dependencies you may need to include.
+
+- **Dependencies**: What other Python libraries does your package rely on to function? What about hardware dependencies? Finding the right balance between including everything a user may need and keeping the package lightweight is important.
+
+- **Testability**: How will users test your package? You should consider including unit tests and examples to demonstrate usage and ensure your code functions as expected.
+
+-. **Scalability**: As your project and software grows in size and complexity, how can you effectively handle the increased modules, dependencies and distribution requirements? 
+
+Of course, this is not an exhaustive list, however, once you have thought about candidate solutions for these questions, you're in a good position to start packaging your software.
 
 ### Packaging in Python
 
@@ -90,35 +108,41 @@ The most basic directory structure of a Python package looks something like:
 ```
 📦 my_project/
 ├── 📂 my_package/
-│   └── 📄 __init__.py
 └── 📄 pyproject.toml
 
 where
 
 - 📦 `my_project/` is the root directory of the project.
 - 📂 `my_package/` is the package directory containing the source code.
-- 📄 `__init__.py` is an initialisation script (note; this also lets Python know that there are importable modules in this directory).
-- 📄 `pyproject.toml` is a configuation file for setting up the package, containing basic metadata. Tools such as `setuptools` and `pip` use this script to configure how the package is built, distributed, and installed.
+- 📄 `pyproject.toml` is a configuation file for setting up the package, containing basic metadata.
 ```
 
+Tools such as `setuptools` and `pip` use the `pyproject.toml` file to configure how the package is built, distributed, and installed. We'll cover `pyproject.toml` in more depth in the next couple of episodes.
 
-::::::::::::::::::::::::::::::::::::: callout
 
-For example, consider the times you have imported a library, such as [numpy](www.numpy.org). The ability to write:
+::::::::::::::::::::::::::::::::::::: spoiler
+
+### Optional: What is `__init__.py`?
+
+At this point, it's worth discussing the use of the `__init__.py` file that you might have come across before when packaging. Historically, the `__init__.py` script has been used to mark a directory as a Python package, allowing the contained modules to be imported (note; the use of double under lines in Python, often abbreviated to `dunder` lines, signal that this script should be "hidden" from users, helping distinguish this script from others.) It also contains any initialisation code for the package. The directory's structure might look something like:
+
+
+```
+📦 my_project/
+├── 📂 my_package/
+│   └── 📄 __init__.py
+└── 📄 pyproject.toml
+```
+
+For instance, consider the times you have imported a package, such as [numpy](www.numpy.org). The ability to write:
 
 ```python
 import numpy
 ```
-is primarily enabled by the specific (modular) structuring of the numpy package. This includes presence of the `__init__.py` file, which signals to Python that the directory is a package, allowing to import its content using the `import` statement. The complete `import numpy` statement then means Python searches for the `numpy` package  in its search path (`sys.path`) and loads its contents into the namespace under the name `numpy`.
+is enabled by the modular structuring of the numpy package. This includes presence of the `__init__.py` file, which signals to Python that the directory is a package, allowing to import its content using the `import` statement. The complete `import numpy` statement then means Python searches for the `numpy` package  in its search path (`sys.path`) and loads its contents into the namespace under the name `numpy`. Packages that follow the folder structure above are often referred to as **regular packages**.
 
+However, in Python versions >= 3.3, the concept of **implicit namespace packages** (see [PEP 420](https://peps.python.org/pep-0420/)) was introduced. Namespace packages are commonly used to split a regular Python package (as described above) across multiple directories, which ultimately means the `__init__.py` file is technically not required to create any Python package. For the purposes of this course, we will omit the use of the `__init__.py` script.
 
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: discussion
-
-Another important point to highlight is the use of the ``__init__.py`` file in Python packages. In versions >= 3.3, Python introduced the concept of implicit namespace packages (see [PEP 420](https://peps.python.org/pep-0420/)). Namespace packages are a way of splitting a regular Python package (as described above) across multiple directories, which ultimately means the ``__init__.py`` file is not required to create a package. However, namespace packages are not commonly used, and it is common practise to still include ``__init__.py`` script to create "regular" packages. 
-
-Apart from the reasons mentioned above, what other advantages can you think of that would enable software development best practises by including the ``__init__.py`` script? Can you find out which kind of projects benefit from namespace packages?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -129,6 +153,13 @@ Apart from the reasons mentioned above, what other advantages can you think of t
 The directory structure of the basic Python package shown above is a good starting point, but it can be improved. From what you have learned so far, what other files and folders could you include in your package to provide better organisation, readability, and compatibility?
 
 
+:::::::::::::::::::::::: hint
+
+## Hint
+
+Use the emoji folder structure above to get you started. 
+
+:::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::: solution
 
@@ -139,7 +170,6 @@ A possible improvement could be to include the following to your package:
 ```
 📦 my_project/
 ├── 📂 my_package/
-│   └── 📄 __init__.py
 ├── 📂 tests/
 ├── 📄 pyproject.toml
 ├── 📄 README.md
@@ -159,7 +189,7 @@ Although we have touched on the core concepts of packaging in Python, including 
 
 - Software packaging is akin to the packaging a box for shipment. Attributes such as the software source code, installation instructions, user documentation, and test scripts all support to ensure reproducibility.
 
-- The purpose of a software package is to install source code for execution on various systems, with considerations including target users, dependencies, and testability.
+- The purpose of a software package is to install source code for execution on various systems, with considerations including target users, dependencies, testability and scalability.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
