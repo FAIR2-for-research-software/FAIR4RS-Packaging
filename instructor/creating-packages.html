@@ -121,11 +121,11 @@
   FAIR4RS Tools for Reproducibility: Packaging
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 61%" class="percentage">
-    61%
+<aside class="col-md-12 lesson-progress"><div style="width: 60%" class="percentage">
+    60%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 61%" aria-valuenow="61" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 60%" aria-valuenow="60" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -372,7 +372,7 @@
 </div>
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a></h2>
 <hr class="half-width"><p>This episode will see us creating our own Python project from scratch
-and installing it into a python virtual environment ready for use. Feel
+and installing it into a Python virtual environment ready for use. Feel
 free if you’re feeling adventurous to create your own package content or
 follow along with this example of a Fibonacci counter.</p>
 </section><section><h2 class="section-heading" id="fibonacci-counter">Fibonacci Counter<a class="anchor" aria-label="anchor" href="#fibonacci-counter"></a></h2>
@@ -414,9 +414,9 @@ that can go into a package.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<ol style="list-style-type: decimal"><li>Python Module - This is the directory with the python code that does
+<ol style="list-style-type: decimal"><li>Python Module - This is the directory with the Python code that does
 the work.</li>
 <li>Configuration File - e.g. your pyproject.toml file</li>
 <li>Other metadata files - e.g. LICENCE, README.md, citation.cff</li>
@@ -437,7 +437,7 @@ are on macOS or Linux, create a folder called
 ├── 📄 pyproject.toml
 └── 📂 tests/
     └── 📄 test_fibonacci.py</code></pre>
-<p>The first thing we will do in this project is create the python
+<p>The first thing we will do in this project is create the Python
 module (the actual code!).</p>
 <div id="creating-python-module" class="callout discussion">
 <div class="callout-square">
@@ -446,7 +446,7 @@ module (the actual code!).</p>
 <div id="creating-python-module" class="callout-inner">
 <h3 class="callout-title">Creating Python module</h3>
 <div class="callout-content">
-<ol style="list-style-type: decimal"><li>Create a python file called <code>fibonacci.py</code> as shown in
+<ol style="list-style-type: decimal"><li>Create a Python file called <code>fibonacci.py</code> as shown in
 the structure above.</li>
 <li>Add the following code which contains a function that returns the
 Fibonacci sequence</li>
@@ -476,7 +476,7 @@ Fibonacci sequence</li>
 <h3 class="callout-title">Using your Python module</h3>
 <div class="callout-content">
 <p>Create a script in your project directory that imports and uses your
-fibonacci script. This will serve as a good quick test that it
+Fibonacci script. This will serve as a good quick test that it
 works.</p>
 </div>
 </div>
@@ -486,11 +486,11 @@ works.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>Create the file in <code>/my_project</code>, for example
 <code>fibonacci_test.py</code>.</li>
-<li>Import and run the fibonacci function:</li>
+<li>Import and run the Fibonacci function:</li>
 </ol><div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -519,9 +519,9 @@ below.</p>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="kw">[project]</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my_cool_package"</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.0.0"</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A package to do awesome things"</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci"</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A package to calculate the fibonacci sequence"</span></span>
 <span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pandas"</span><span class="op">,</span> <span class="st">"numpy"</span><span class="op">]</span></span></code></pre>
 </div>
 <div class="section level3">
@@ -572,7 +572,7 @@ keys:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">TOML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -582,7 +582,7 @@ keys:</p>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="kw">[project]</span></span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci"</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.0.0"</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
 <span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A package which can produce the Fibonacci sequence"</span></span>
 <span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[{</span><span class="dt">name</span><span class="op"> =</span> <span class="st">"your_name"</span><span class="op">, </span><span class="dt">email</span><span class="op">=</span><span class="st">"youremail@email.com"</span><span class="op">}]</span></span>
 <span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="dt">keywords</span> <span class="op">=</span> <span class="op">[</span><span class="st">"fibonacci"</span><span class="op">,</span> <span class="st">"maths"</span><span class="op">]</span></span></code></pre>
@@ -605,7 +605,7 @@ Just ensure your terminal’s working directory is the same as the
 editable or <code>-e</code> for short.
 <code>py -m pip install -e .</code></p>
 <p>With a default installation (without -e), any changes to your source
-package will only appear in your python environment when your package is
+package will only appear in your Python environment when your package is
 rebuilt and reinstalled. The editable option allows for quick
 development of a package by removing that need to be reinstalled, for
 this reason it is sometimes called development mode!</p>
@@ -619,11 +619,11 @@ this reason it is sometimes called development mode!</p>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<ul><li>A package can be built with as little as 2 files, a python script
+<ul><li>A package can be built with as little as 2 files, a Python script
 and a configuration file</li>
 <li>pyproject.toml files have 2 key tables, [build-system] and
 [project]</li>
-<li>Editable instals allow for quick and easy package development</li>
+<li>Editable installs allow for quick and easy package development</li>
 </ul></div>
 </div>
 </div>

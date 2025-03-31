@@ -231,7 +231,6 @@
         <ul><li><a href="#introduction">Introduction</a></li>
 <li><a href="#requirements.txt">Requirements.txt</a></li>
 <li><a href="#setup.py">Setup.py</a></li>
-<li><a href="#setup.cfg">Setup.cfg</a></li>
 <li><a href="#pyproject.toml">Pyproject.toml</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -389,7 +388,6 @@ the other methods when looking at other projects.</p>
 <div class="callout-content">
 <ol style="list-style-type: decimal"><li>requirements.txt</li>
 <li>setup.py</li>
-<li>setup.cfg</li>
 <li>pyproject.toml</li>
 </ol></div>
 </div>
@@ -419,7 +417,18 @@ metadata and logic for building your package are contained.</p>
 <div class="callout-content">
 <p>Q: Discuss with each other what problems if any you think there may
 be with using a python file to create python packages</p>
-<p><code>Hint: Think about the differences between a code file and a text file</code></p>
+</div>
+</div>
+</div>
+<div id="accordionHint1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
+  <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
+</button>
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div class="accordion-body">
+<p>Think about the differences between a code file and a text file</p>
+</div>
 </div>
 </div>
 </div>
@@ -430,12 +439,13 @@ be with using a python file to create python packages</p>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p>Some potential issues are: 1. As <code>setup.py</code> is a code
-file, there is a potential for malicious code to be hidden in them if
-the file comes from an untrusted source 2. There is quite a bit of
-‘boilerplate’ in each file 3. The syntax has to be precise and may be
-confusing to those not familiar with Python</p>
-</div>
+<ol style="list-style-type: decimal"><li>As <code>setup.py</code> is a code file, there is a potential for
+malicious code to be hidden in them if the file comes from an untrusted
+source</li>
+<li>There is quite a bit of ‘boilerplate’ in each file</li>
+<li>The syntax has to be precise and may be confusing to those not
+familiar with Python</li>
+</ol></div>
 </div>
 </div>
 </div>
@@ -445,73 +455,22 @@ confusing to those not familiar with Python</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">from</span> setuptools <span class="im">import</span> setup</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>setup(</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  name<span class="op">=</span><span class="st">'my_cool_package'</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  name<span class="op">=</span><span class="st">'fibonacci'</span>,</span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  version<span class="op">=</span><span class="st">'1.0.0'</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>  description<span class="op">=</span><span class="st">'A package to do awesome things'</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>  description<span class="op">=</span><span class="st">'A package to calculate the fibonacci sequence'</span>,</span>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  long_description<span class="op">=</span><span class="bu">open</span>(<span class="st">'README.md'</span>).read(),</span>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>  author<span class="op">=</span><span class="st">'John Doe'</span>,</span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>  author_email<span class="op">=</span><span class="st">'john.doe@example.com'</span>,</span>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>  license<span class="op">=</span><span class="st">'MIT'</span>,</span>
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>)</span></code></pre>
 </div>
-</section><section><h2 class="section-heading" id="setup-cfg">Setup.cfg<a class="anchor" aria-label="anchor" href="#setup-cfg"></a></h2>
-<hr class="half-width"><p>To tackle some of the problems with <code>setup.py</code>, another
-standard file was introduced called <code>setup.cfg</code> (cfg stands
-for config).</p>
-<p>The task of a <code>setup.cfg</code> file is to declare metadata and
-settings required for a package in a simple manner. Unlike a setup.py
-which requires code imports and functions, the <code>setup.cfg</code>
-only has headers and key value pairs.</p>
-<div id="key-value-pair" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div id="key-value-pair" class="callout-inner">
-<h3 class="callout-title">Key Value Pair</h3>
-<div class="callout-content">
-<p>A key value pair is a fundamental way of storing data which is used
-across many languages and formats. Here’s how it works:</p>
-<ul><li>Key: Is the unique identifier, like the label on a file in a filing
-cabinet</li>
-<li>Value: Is the actual data that needs storing. It can be a number,
-text or many other things.</li>
-</ul><p>An example would be name = Jane</p>
-</div>
-</div>
-</div>
-<pre><code>[metadata]
-
-name = my_cool_package
-description = A package to do awesome things
-long_description = file: README.md
-author = John Doe
-author_email = john.doe@example.com
-keywords = data, analysis, python
-license = MIT
-
-[options]
-# Specify libraries your project needs (dependencies)
-install_requires = pandas numpy
-
-# Python version compatibility (optional)
-python_requires = &gt;=3.7</code></pre>
-<p>When using a <code>setup.cfg</code> however, a dummy
-<code>setup.py</code> was still required to build the package. This
-looked like:</p>
-<div class="codewrapper sourceCode" id="cb4">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="im">from</span> setuptools <span class="im">import</span> setup</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>    setup()</span></code></pre>
-</div>
 </section><section><h2 class="section-heading" id="pyproject-toml">Pyproject.toml<a class="anchor" aria-label="anchor" href="#pyproject-toml"></a></h2>
-<hr class="half-width"><p>Introduced in (PEP517)[<a href="https://peps.python.org/pep-0517/" class="external-link uri">https://peps.python.org/pep-0517/</a>], the latest file for
-packaging a python project is the <code>pyproject.toml</code> file. Like
-a <code>.cfg</code> file, a <code>toml</code> file is designed to be
-easy to read and declarative.</p>
-<div id="callout3" class="callout">
+<hr class="half-width"><p>Introduced in <a href="https://peps.python.org/pep-0517/" class="external-link">PEP517</a>,
+the latest file for packaging a python project is the
+<code>pyproject.toml</code> file. Like a <code>.cfg</code> file, a
+<code>toml</code> file is designed to be easy to read and declarative.
+It is the current recommended way to package your Python</p>
+<div id="callout2" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -526,40 +485,56 @@ easy to read and declarative.</p>
 aimed to replace <code>setup.py</code> as the place to declare build
 system dependencies. For example the most basic
 <code>pyproject.toml</code> would look like this.</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">TOML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode toml" tabindex="0"><code class="sourceCode toml"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="kw">[build-system]</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co"># Minimum requirements for the build system to execute.</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"setuptools"</span><span class="op">,</span> <span class="st">"wheel"</span><span class="op">]</span></span></code></pre>
+<pre class="sourceCode toml" tabindex="0"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="kw">[build-system]</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co"># Minimum requirements for the build system to execute.</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"setuptools"</span><span class="op">,</span> <span class="st">"wheel"</span><span class="op">]</span></span></code></pre>
 </div>
 <p>Project metadata however was still being specified either in a
 <code>setup.py</code> or a <code>setup.cfg</code>, the latter being
 preferred.</p>
-<p>With the introduction of (PEP621)[<a href="https://peps.python.org/pep-0621/" class="external-link uri">https://peps.python.org/pep-0621/</a>] in 2020, project
+<p>With the introduction of <a href="https://peps.python.org/pep-0621/" class="external-link">PEP621</a> in 2020, project
 metadata could also be stored in the <code>pyproject.toml</code> files,
 meaning you only now need the single file to specify all the build
 requirements and metadata required for your package! This is still the
 preferred way in the community.</p>
 <p>We will be going into how to make a <code>pyproject.toml</code> file
 in more detail in one of the next episodes.</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">TOML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode toml" tabindex="0"><code class="sourceCode toml"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co">#Build system information</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="kw">[build-system]</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"setuptools"</span><span class="op">,</span> <span class="st">"wheel"</span><span class="op">]</span></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#Project Metadata</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="kw">[project]</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my_cool_package"</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.0.0"</span></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A package to do awesome things"</span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pandas"</span><span class="op">,</span> <span class="st">"numpy"</span><span class="op">]</span></span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#Config for an external tool</span></span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="kw">[tool.black]</span></span>
-<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="dt">line-length</span> <span class="op">=</span> <span class="dv">98</span></span></code></pre>
+<pre class="sourceCode toml" tabindex="0"><code class="sourceCode toml"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co">#Build system information</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="kw">[build-system]</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"setuptools"</span><span class="op">,</span> <span class="st">"wheel"</span><span class="op">]</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#Project Metadata</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="kw">[project]</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my_cool_package"</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.0.0"</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A package to do awesome things"</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pandas"</span><span class="op">,</span> <span class="st">"numpy"</span><span class="op">]</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#Config for an external tool</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="kw">[tool.black]</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="dt">line-length</span> <span class="op">=</span> <span class="dv">98</span></span></code></pre>
+</div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<ul><li>Python packages make code easier to install, reuse and
+maintain.</li>
+<li>A single pyproject.toml file is all that is required to package your
+Python project.</li>
+<li>There are multiple standards out there for Python packaging, but
+pyproject.toml is the current recommended way.</li>
+</ul></div>
+</div>
 </div>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
