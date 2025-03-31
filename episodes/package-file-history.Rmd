@@ -1,7 +1,7 @@
 ---
 title: 'Package File History'
 teaching: 10
-exercises: 2
+exercises: 1
 editor_options: 
   markdown: 
     wrap: 100
@@ -31,8 +31,7 @@ This is to both build an understanding of why the current standard is what it is
 
 1. requirements.txt
 2. setup.py
-3. setup.cfg
-4. pyproject.toml
+3. pyproject.toml
 
 :::
 
@@ -58,11 +57,15 @@ Before the introduction of `pyproject.toml` the main tool supported for installi
 
 Q: Discuss with each other what problems if any you think there may be with using a python file to create python packages
 
-`Hint: Think about the differences between a code file and a text file`
+::: hint
+### Hint
+
+Think about the differences between a code file and a text file
+:::
 
 ::: solution
 
-Some potential issues are:
+
 1. As `setup.py` is a code file, there is a potential for malicious code to be hidden in them if the file comes from an untrusted source
 2. There is quite a bit of 'boilerplate' in each file
 3. The syntax has to be precise and may be confusing to those not familiar with Python
@@ -74,9 +77,9 @@ Some potential issues are:
 from setuptools import setup
 
 setup(
-  name='my_cool_package',
+  name='fibonacci',
   version='1.0.0',
-  description='A package to do awesome things',
+  description='A package to calculate the fibonacci sequence',
   long_description=open('README.md').read(),
   author='John Doe',
   author_email='john.doe@example.com',
@@ -84,56 +87,10 @@ setup(
 )
 ```
 
-## Setup.cfg
-
-To tackle some of the problems with `setup.py`, another standard file was introduced called `setup.cfg` (cfg stands for config). 
-
-The task of a `setup.cfg` file is to declare metadata and settings required for a package in a simple manner. Unlike a setup.py which requires code imports and functions, the `setup.cfg` only has headers and key value pairs. 
-
-::: callout
-### Key Value Pair
-
-A key value pair is a fundamental way of storing data which is used across many languages and formats. Here's how it works:
-
-- Key: Is the unique identifier, like the label on a file in a filing cabinet
-- Value: Is the actual data that needs storing. It can be a number, text or many other things.
-
-An example would be name = Jane
-
-:::
-
-```
-[metadata]
-
-name = my_cool_package
-description = A package to do awesome things
-long_description = file: README.md
-author = John Doe
-author_email = john.doe@example.com
-keywords = data, analysis, python
-license = MIT
-
-[options]
-# Specify libraries your project needs (dependencies)
-install_requires = pandas numpy
-
-# Python version compatibility (optional)
-python_requires = >=3.7
-```
-
-When using a `setup.cfg` however, a dummy `setup.py` was still required to build the package. This looked like:
-
-```python
-from setuptools import setup
-
-if __name__ == "__main__":
-    setup()
-```
-
 ## Pyproject.toml
 
-Introduced in (PEP517)[https://peps.python.org/pep-0517/], the latest file for packaging a python project is the `pyproject.toml` file.
-Like a `.cfg` file, a `toml` file is designed to be easy to read and declarative.
+Introduced in [PEP517](https://peps.python.org/pep-0517/), the latest file for packaging a python project is the `pyproject.toml` file.
+Like a `.cfg` file, a `toml` file is designed to be easy to read and declarative. It is the current recommended way to package your Python 
 
 ::: callout
 TOML stands for Tom's Obvious Minimal Language!
@@ -150,7 +107,7 @@ requires = ["setuptools", "wheel"]
 
 Project metadata however was still being specified either in a `setup.py` or a `setup.cfg`, the latter being preferred.
 
-With the introduction of (PEP621)[https://peps.python.org/pep-0621/] in 2020, project metadata could also be stored in the `pyproject.toml` files, meaning you only now need the single file to specify all the build requirements and metadata required for your package! This is still the preferred way in the community.
+With the introduction of [PEP621](https://peps.python.org/pep-0621/) in 2020, project metadata could also be stored in the `pyproject.toml` files, meaning you only now need the single file to specify all the build requirements and metadata required for your package! This is still the preferred way in the community.
 
 We will be going into how to make a `pyproject.toml` file in more detail in one of the next episodes.
 
@@ -170,3 +127,9 @@ dependencies = ["pandas", "numpy"]
 [tool.black]
 line-length = 98
 ```
+
+::: keypoints
+- Python packages make code easier to install, reuse and maintain. 
+- A single pyproject.toml file is all that is required to package your Python project.
+- There are multiple standards out there for Python packaging, but pyproject.toml is the current recommended way.
+:::
