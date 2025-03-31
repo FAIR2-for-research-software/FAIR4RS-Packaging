@@ -1,37 +1,28 @@
 ---
 title: Setup
 ---
+## Summary
 
-FIXME: Setup instructions live in this document. Please specify the tools and
-the data sets the Learner needs to have installed.
-
-## Data Sets
-
-<!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
--->
-Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
+Packaging your software is one of the most important steps in a software project to make it both findable and accessible. This course will provide you with an understanding of why and when packaging is useful, what different standards exist to package Python projects and take you through each step of the packaging process.
 
 ## Software Setup
 
-::::::::::::::::::::::::::::::::::::::: discussion
+### Python 3
 
-### Details
+This session will be using Python 3 as the language for examples and demonstrations. 
+Python can be downloaded from the [official website](https://www.python.org/downloads/), versions 3.11 or newer are recommended. 
 
-Setup for different systems can be presented in dropdown menus via a `spoiler`
-tag. They will join to this discussion block, so you can give a general overview
-of the software used in this lesson here and fill out the individual operating
-systems (and potentially add more, e.g. online setup) in the solutions blocks.
+### Terminal
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::
+A terminal interface will also be required, listed below are the recommended ones for each OS. 
+Although terminal commands aren't an explicit part of the lesson if you are unfamiliar with them guidance will be available during the session. 
+This [carpentries lesson](https://swcarpentry.github.io/shell-novice/) is also a good starting place to learn.
 
 :::::::::::::::: spoiler
 
 ### Windows
 
-Use PuTTY
+Use Command Prompt or PowerShell
 
 ::::::::::::::::::::::::
 
