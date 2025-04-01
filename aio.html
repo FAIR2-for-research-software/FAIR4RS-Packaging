@@ -39,13 +39,13 @@
         <a href="https://www.sheffield.ac.uk" class="external-link">
           <img alt="University of Sheffield" src="assets/images/UOSLogo_Primary_Violet_RGB.svg" class="light-only"><img alt="University of Sheffield" src="assets/images/UOSLogo_Primary_White_RGB.svg" class="dark-only"></a>
 
-        <span class="badge text-bg-danger">
-          <abbr title="This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.">
-            <a href="https://cdh.carpentries.org/the-lesson-life-cycle.html#early-development-pre-alpha-through-alpha" class="external-link alert-link">
-              <i aria-hidden="true" class="icon" data-feather="alert-octagon" style="border-radius: 5px"></i>
-              Pre-Alpha
+        <span class="badge text-bg-warning">
+          <abbr title="This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.">
+            <a href="https://cdh.carpentries.org/the-lesson-life-cycle.html#field-testing-alpha-stage" class="external-link alert-link">
+              <i aria-hidden="true" class="icon" data-feather="alert-triangle" style="border-radius: 5px"></i>
+              Alpha
             </a>
-            <span class="visually-hidden">This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.</span>
+            <span class="visually-hidden">This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.</span>
           </abbr>
         </span>
 
@@ -1085,10 +1085,10 @@ then installed, which is often far slower.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
 <p><code>.\.venv\Scripts\activate</code></p>
 </div>
-<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
+<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
 <p><code>source .venv/bin/activate</code></p>
 </div>
 </div>
@@ -1106,7 +1106,7 @@ brackets at the start of your terminal line</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Virtual Environments </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>Check out <a href="https://docs.python.org/3/l%5BPyPI%5D(https://pypi.org/project/pip/)ibrary/venv.html" class="external-link">this
 documentation</a> or the FAIR4RS course on virtual environments to learn
@@ -1135,10 +1135,10 @@ packages you’re developing.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-1">
+<div id="nav-tabpanel-2-1" class="tab-pane show active" aria-labelledby="nav-tab-2-1" role="tabpanel">
 <p><code>py -m pip install .</code></p>
 </div>
-<div id="nav-tabpanel-2-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-2">
+<div id="nav-tabpanel-2-2" class="tab-pane" aria-labelledby="nav-tab-2-2" role="tabpanel">
 <p><code>python3 -m pip install .</code></p>
 </div>
 </div>
@@ -1704,7 +1704,7 @@ your reasoning.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
 <div class="accordion-body">
 <p>Think about whether the new feature introduces any breaking changes
 for existing users.</p>
@@ -1717,7 +1717,7 @@ for existing users.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>According to semantic versioning, since the new feature adds
 functionality in a backward-compatible manner, the version should be
@@ -2924,15 +2924,15 @@ any links that you are not going to use.
     {
   "@context": "https://schema.org",
   "@type": "TrainingMaterial",
-  "@id": "christopher-wild.github.io/FAIR4RS-Packaging/aio.html",
+  "@id": "https://fair2-for-research-software.github.io/FAIR4RS-Packaging/aio.html",
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
   "keywords": "packaging, software, FAIR, reproducibility",
   "name": "All in One View",
   "creativeWorkStatus": "active",
-  "url": "christopher-wild.github.io/FAIR4RS-Packaging/aio.html",
-  "identifier": "christopher-wild.github.io/FAIR4RS-Packaging/aio.html",
+  "url": "https://fair2-for-research-software.github.io/FAIR4RS-Packaging/aio.html",
+  "identifier": "https://fair2-for-research-software.github.io/FAIR4RS-Packaging/aio.html",
   "dateCreated": "2024-04-02",
   "dateModified": "2025-04-01",
   "datePublished": "2025-04-01"
