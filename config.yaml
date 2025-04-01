@@ -21,7 +21,7 @@ keywords: 'packaging, software, FAIR, reproducibility'
 
 # Life cycle stage of the lesson
 # possible values: pre-alpha, alpha, beta, stable
-life_cycle: 'pre-alpha'
+life_cycle: 'alpha'
 
 # License of the lesson materials (recommended CC-BY 4.0)
 license: 'CC-BY 4.0'
@@ -77,4 +77,4 @@ instructors:
 profiles:
 
 varnish: RSE-Sheffield/uos-varnish@main
-url: 'christopher-wild.github.io/FAIR4RS-Packaging'
+url: 'https://fair2-for-research-software.github.io/FAIR4RS-Packaging/'
