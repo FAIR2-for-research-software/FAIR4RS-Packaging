@@ -1,0 +1,23 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Git Collaboration
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Chris
+    family-names: Wild
+    email: c.wild@sheffield.ac.uk
+    affiliation: University of Sheffield
+    orcid: 'https://orcid.org/0009-0009-1195-1497'
+url: 'https://github.com/FAIR2-for-research-software/FAIR4RS-Packaging'
+abstract: >-
+  A Carpentry based, intermediate level course on packaging software
+keywords:
+  - packaging
+  - python
+  - carpentries
+license: CC-BY-4.0
