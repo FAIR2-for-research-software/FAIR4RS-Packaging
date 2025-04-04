@@ -1,9 +1,9 @@
 [![pages-build-deployment](https://github.com/christopher-wild/FAIR4RS-Packaging/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/christopher-wild/FAIR4RS-Packaging/actions/workflows/pages/pages-build-deployment)
 
 
-# Research Software Documentation
+# Research Software Packaging
 
-This repository contains a course on documenting research software that is part of the [training provision for research computing](https://sites.google.com/sheffield.ac.uk/research-training/) at the University of Sheffield.
+This repository contains a course on packaging research software that is part of the [training provision for research computing](https://sites.google.com/sheffield.ac.uk/research-training/) at the University of Sheffield.
 
 ## Course description
 
