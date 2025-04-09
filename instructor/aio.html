@@ -375,7 +375,7 @@
         
 <section id="aio-introduction"><p>Content from <a href="introduction.html">Software Packaging</a></p>
 <hr>
-<p>Last updated on 2025-04-08 |
+<p>Last updated on 2025-04-09 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -393,7 +393,7 @@
 <li>What is software packaging?</li>
 <li>How is packaging related to reproducibility and the FAIR4RS
 principles?</li>
-<li>What does packaging a python project look like?</li>
+<li>What does packaging a Python project look like?</li>
 </ul>
 </div>
 </div>
@@ -480,7 +480,7 @@ package attribute in terms of the software attribute.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
 <div class="accordion-body">
 <p>The above callout should help you think about a few different
 possible analogies.</p>
@@ -493,7 +493,7 @@ possible analogies.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li><p>Box of items: The software itself (source code, data,
@@ -543,10 +543,10 @@ and keeping the package lightweight is important.</p></li>
 <li><p><strong>Testability</strong>: How will users test your package?
 You should consider including unit tests and examples to demonstrate
 usage and ensure your code functions as expected.</p></li>
-</ul>
-<p>-. <strong>Scalability</strong>: As your project and software grows
+<li><p><strong>Scalability</strong>: As your project and software grows
 in size and complexity, how can you effectively handle the increased
-modules, dependencies and distribution requirements?</p>
+modules, dependencies and distribution requirements?</p></li>
+</ul>
 <p>Of course, this is not an exhaustive list, however, once you have
 thought about candidate solutions for these questions, you’re in a good
 position to start packaging your software.</p>
@@ -573,7 +573,7 @@ more depth in the next couple of episodes.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Optional: What is __init__.py? </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>At this point, it’s worth discussing the use of the
 <code>__init__.py</code> file that you might have come across before
@@ -605,7 +605,7 @@ and loads its contents into the namespace under the name
 <code>numpy</code>. Packages that follow the folder structure above are
 often referred to as <strong>regular packages</strong>.</p>
 <p>However, in Python versions &gt;= 3.3, the concept of
-<strong>implicit namespace packages</strong> (see <a href="https://peps.python.org/pep-0420/" class="external-link">PEP 420</a>) was introduced.
+<strong>implicit namespace packages</strong> (see <a href="https://peps.Python.org/pep-0420/" class="external-link">PEP 420</a>) was introduced.
 Namespace packages are commonly used to split a regular Python package
 (as described above) across multiple directories, which ultimately means
 the <code>__init__.py</code> file is technically not required to create
@@ -634,7 +634,7 @@ to provide better organisation, readability, and compatibility?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
 <div class="accordion-body">
 <p>Use the emoji folder structure above to get you started.</p>
 </div>
@@ -646,7 +646,7 @@ to provide better organisation, readability, and compatibility?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>A possible improvement could be to include the following to your
 package:</p>
@@ -706,7 +706,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-package-file-history"><p>Content from <a href="package-file-history.html">Package File History</a></p>
 <hr>
-<p>Last updated on 2025-04-08 |
+<p>Last updated on 2025-04-09 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/package-file-history.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 11 minutes</p>
@@ -929,7 +929,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-accessing-packages"><p>Content from <a href="accessing-packages.html">Accessing Packages</a></p>
 <hr>
-<p>Last updated on 2025-04-08 |
+<p>Last updated on 2025-04-09 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/accessing-packages.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 32 minutes</p>
@@ -968,7 +968,7 @@ any links that you are not going to use.
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <hr class="half-width">
-<p>Due to Pythons popularity as a language, it is quite likely that you
+<p>Due to Python’s popularity as a language, it is quite likely that you
 won’t be the first person to set off on solving any particular task.
 Many others have worked on common problems and then shared their
 solution in the form of a package, which you can conveniently integrate
@@ -1191,7 +1191,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-creating-packages"><p>Content from <a href="creating-packages.html">Creating Packages</a></p>
 <hr>
-<p>Last updated on 2025-04-08 |
+<p>Last updated on 2025-04-09 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/creating-packages.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -1276,7 +1276,7 @@ that can go into a package.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Python Module - This is the directory with the Python code that does
@@ -1352,7 +1352,7 @@ works.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Create the file in <code>/my_project</code>, for example
@@ -1446,7 +1446,7 @@ keys:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">TOML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1510,7 +1510,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-versioning"><p>Content from <a href="versioning.html">Versioning</a></p>
 <hr>
-<p>Last updated on 2025-04-08 |
+<p>Last updated on 2025-04-09 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/versioning.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -2005,7 +2005,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-releasing"><p>Content from <a href="releasing.html">Publishing Python Packages</a></p>
 <hr>
-<p>Last updated on 2025-04-08 |
+<p>Last updated on 2025-04-09 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/releasing.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -2760,21 +2760,21 @@ advantages and disadvantages before applying it to your workflows.</p>
 GitHub.</em>.
 </figcaption></figure><p>At The University of Sheffield, researchers also use another popular
 repository called <a href="https://figshare.com/" class="external-link"><code>ORDA</code></a>.
-ORDA is the University of Sheffield’s main research data repository,
-facilitating the sharing, discovery, and preservation of the
-university’s research data. Managed by the University Library’s Research
-Data Management team and provided by Figshare, ORDA assigns a DOI
-(Digital Object Identifier) to each deposited record, ensuring its
-accessibility and citability. Researchers are encouraged to use ORDA
-unless a subject-specific repository or data center is more commonly
-used in their field. ORDA supports the FAIR principles, and by extension
-the FAIR4RS principles, by making research outputs citable,
-discoverable, and easily accessible to a wider research community. As
-with PyPI, you should first sign up to ORDA (note; you should use your
-university credentials to create your account).</p>
+ORDA is the University’s main research data repository, facilitating the
+sharing, discovery, and preservation of the university’s research data.
+Managed by the University Library’s Research Data Management team and
+provided by Figshare, ORDA assigns a DOI (Digital Object Identifier) to
+each deposited record, ensuring its accessibility and citability.
+Researchers are encouraged to use ORDA unless a subject-specific
+repository or data center is more commonly used in their field. ORDA
+supports the FAIR principles, and by extension the FAIR4RS principles,
+by making research outputs citable, discoverable, and easily accessible
+to a wider research community. As with PyPI, you should first sign up to
+ORDA (note; you should use your university credentials to create your
+account).</p>
 <figure style="text-align: center;"><img src="../fig/figshare-upload.png" alt="Demonstration of how to upload software packages to ORDA." width="750" class="figure"><figcaption><em>Figure 4: Demonstration of how to upload data or software sources to
 ORDA. GitHub.</em>.
-</figcaption></figure><p>Figure 3 demonstrates how to upload your project to ORDA using their
+</figcaption></figure><p>Figure 4 demonstrates how to upload your project to ORDA using their
 graphical user interface functionality. There is also the option to
 connect your project’s GitHub account to ORDA, allowing further
 portability between the two platforms. Once you have published your
@@ -2955,8 +2955,8 @@ any links that you are not going to use.
   "url": "https://fair2-for-research-software.github.io/FAIR4RS-Packaging/instructor/aio.html",
   "identifier": "https://fair2-for-research-software.github.io/FAIR4RS-Packaging/instructor/aio.html",
   "dateCreated": "2024-04-02",
-  "dateModified": "2025-04-08",
-  "datePublished": "2025-04-08"
+  "dateModified": "2025-04-09",
+  "datePublished": "2025-04-09"
 }
 
   </script><script>
