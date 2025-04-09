@@ -23,7 +23,7 @@ exercises: 2
 
 ## Introduction
 
-Due to Pythons popularity as a language, it is quite likely that you won't be the first person to set off on solving any particular task.
+Due to Python's popularity as a language, it is quite likely that you won't be the first person to set off on solving any particular task.
 Many others have worked on common problems and then shared their solution in the form of a package, which you can conveniently integrate into your own code and use!
 
 ::: callout
