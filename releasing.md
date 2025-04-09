@@ -466,7 +466,7 @@ An alternative method of publishing to PyPI using API tokens is the use of [Trus
     <figcaption><em>Figure 3: Screenshot of the main landing page of Figshare. GitHub.</em>.</figcaption>
 </figure>
 
-At The University of Sheffield, researchers also use another popular repository called [`ORDA`](https://figshare.com/). ORDA is the University of Sheffield’s main research data repository, facilitating the sharing, discovery, and preservation of the university's research data. Managed by the University Library’s Research Data Management team and provided by Figshare, ORDA assigns a DOI (Digital Object Identifier) to each deposited record, ensuring its accessibility and citability. Researchers are encouraged to use ORDA unless a subject-specific repository or data center is more commonly used in their field. ORDA supports the FAIR principles, and by extension the FAIR4RS principles, by making research outputs citable, discoverable, and easily accessible to a wider research community. As with PyPI, you should first sign up to ORDA (note; you should use your university credentials to create your account).
+At The University of Sheffield, researchers also use another popular repository called [`ORDA`](https://figshare.com/). ORDA is the University's main research data repository, facilitating the sharing, discovery, and preservation of the university's research data. Managed by the University Library’s Research Data Management team and provided by Figshare, ORDA assigns a DOI (Digital Object Identifier) to each deposited record, ensuring its accessibility and citability. Researchers are encouraged to use ORDA unless a subject-specific repository or data center is more commonly used in their field. ORDA supports the FAIR principles, and by extension the FAIR4RS principles, by making research outputs citable, discoverable, and easily accessible to a wider research community. As with PyPI, you should first sign up to ORDA (note; you should use your university credentials to create your account).
 
 
 <figure style="text-align: center;">
@@ -474,7 +474,7 @@ At The University of Sheffield, researchers also use another popular repository 
     <figcaption><em>Figure 4: Demonstration of how to upload data or software sources to ORDA. GitHub.</em>.</figcaption>
 </figure>
 
-Figure 3 demonstrates how to upload your project to ORDA using their graphical user interface functionality. There is also the option to connect your project's GitHub account to ORDA, allowing further portability between the two platforms. Once you have published your software on ORDA, it is readily available for other researchers to use and cite in their own research.
+Figure 4 demonstrates how to upload your project to ORDA using their graphical user interface functionality. There is also the option to connect your project's GitHub account to ORDA, allowing further portability between the two platforms. Once you have published your software on ORDA, it is readily available for other researchers to use and cite in their own research.
 
 
 ::::::::::::::::::::::::::::::::::::: challenge
