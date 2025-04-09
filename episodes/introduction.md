@@ -12,7 +12,7 @@ editor_options:
 
 - What is software packaging?
 - How is packaging related to reproducibility and the FAIR4RS principles?
-- What does packaging a python project look like?
+- What does packaging a Python project look like?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -97,7 +97,7 @@ Once you have convinced yourself that packaging your software is right for your 
 
 - **Testability**: How will users test your package? You should consider including unit tests and examples to demonstrate usage and ensure your code functions as expected.
 
--. **Scalability**: As your project and software grows in size and complexity, how can you effectively handle the increased modules, dependencies and distribution requirements? 
+- **Scalability**: As your project and software grows in size and complexity, how can you effectively handle the increased modules, dependencies and distribution requirements? 
 
 Of course, this is not an exhaustive list, however, once you have thought about candidate solutions for these questions, you're in a good position to start packaging your software.
 
@@ -136,12 +136,12 @@ At this point, it's worth discussing the use of the `__init__.py` file that you 
 
 For instance, consider the times you have imported a package, such as [numpy](www.numpy.org). The ability to write:
 
-```python
+```Python
 import numpy
 ```
 is enabled by the modular structuring of the numpy package. This includes presence of the `__init__.py` file, which signals to Python that the directory is a package, allowing to import its content using the `import` statement. The complete `import numpy` statement then means Python searches for the `numpy` package  in its search path (`sys.path`) and loads its contents into the namespace under the name `numpy`. Packages that follow the folder structure above are often referred to as **regular packages**.
 
-However, in Python versions >= 3.3, the concept of **implicit namespace packages** (see [PEP 420](https://peps.python.org/pep-0420/)) was introduced. Namespace packages are commonly used to split a regular Python package (as described above) across multiple directories, which ultimately means the `__init__.py` file is technically not required to create any Python package. For the purposes of this course, we will omit the use of the `__init__.py` script.
+However, in Python versions >= 3.3, the concept of **implicit namespace packages** (see [PEP 420](https://peps.Python.org/pep-0420/)) was introduced. Namespace packages are commonly used to split a regular Python package (as described above) across multiple directories, which ultimately means the `__init__.py` file is technically not required to create any Python package. For the purposes of this course, we will omit the use of the `__init__.py` script.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
