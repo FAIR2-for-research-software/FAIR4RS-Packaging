@@ -92,7 +92,7 @@ Create a script in your project directory that imports and uses your Fibonacci s
 1. Create the file in `/my_project`, for example `fibonacci_test.py`.
 2. Import and run the Fibonacci function:
 ```python
-from my_package.fibonacci import fibonacci
+from fibonacci import fibonacci
 
 fibonacci(5)
 ```

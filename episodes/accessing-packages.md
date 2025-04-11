@@ -33,7 +33,7 @@ Some of the most popular packages you may have heard of are:
 
 - Numpy
 - Pandas
-- Tensorlow
+- Tensorflow
 - Matplotlib
 - Requests
 
