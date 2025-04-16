@@ -8,7 +8,13 @@
 # lc: Library Carpentry
 # cp: Carpentries (to use for instructor training for instance)
 # incubator: The Carpentries Incubator
+# Note that you can also use a custom carpentry type. For more info,
+# see the documentation: https://carpentries.github.io/sandpaper-docs/editing.html
 carpentry: 'incubator'
+
+# Custom carpentry description
+# This will be used as the alt text for the logo
+# carpentry_description: "Custom Carpentry"
 
 # Overall title for pages.
 title: 'FAIR4RS Tools for Reproducibility: Packaging'
@@ -58,23 +64,29 @@ contact: 'rse@sheffield.ac.uk'
 # - another-learner.md
 
 # Order of episodes in your lesson
-episodes:
+episodes: 
 - introduction.md
 - package-file-history.Rmd
 - accessing-packages.md
 - creating-packages.md
 - versioning.md
 - releasing.md
-
+- publishing-packages.md
 
 # Information for Learners
-learners:
+learners: 
 
 # Information for Instructors
-instructors:
+instructors: 
 
 # Learner Profiles
-profiles:
+profiles: 
+
+# Customisation ---------------------------------------------
+#
+# This space below is where custom yaml items (e.g. pinning
+# sandpaper and varnish versions) should live
+
 
 varnish: RSE-Sheffield/uos-varnish@main
-url: 'https://fair2-for-research-software.github.io/FAIR4RS-Packaging/'
+url: https://fair2-for-research-software.github.io/FAIR4RS-Packaging/
