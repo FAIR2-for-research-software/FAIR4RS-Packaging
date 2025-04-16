@@ -113,7 +113,7 @@ Create a workflow file in `.github/workflows/` called `release-to-pypi.yml` with
 
 ```yaml
 
-name: Publish Python distributiontoTestPyPI
+name: Publish Python distribution to TestPyPI
 
 on:
   push:
