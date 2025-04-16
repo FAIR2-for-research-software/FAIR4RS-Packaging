@@ -1,19 +1,20 @@
 ---
-title: 'Publishing Packages'
+title: 'Publishing Packages '
 teaching: 10
 exercises: 2
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How do you write a lesson using R Markdown and `{sandpaper}`?
+- How can GitHub's automation tools help with publishing your software?
+
+- What are the benefits of publishing your software on PyPI and ORDA?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain how to use markdown with the new lesson template
-- Demonstrate how to include pieces of code, figures, and nested challenge blocks
+- Learn how to publish your software to PyPI and The University of Sheffield's ORDA repository.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 ## Publishing your Software
@@ -86,9 +87,11 @@ pip install your-project-name
 
 ```
 
+## Automating Publishing to PyPI
+
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 3: Automate Publishing to testPyPI
+## Challenge 1: Automate Publishing to testPyPI
 
 Automate releasing
 
@@ -104,63 +107,89 @@ There are several pre-exisiting GitHub Actions that you could use, for example: 
 
 ## Solution
 
-Before writing a workflow file, we need to make sure that we've created a PyPI API token to authenticate the Action.
 
-Next, you should add this API token as a repository secret under `Settings > Secrets > Actions`, called something like `PYPI_TOKEN`. You can follow the same instructions to generate a similar token for TestPyPI, too. 
-
-Following this, you can create a workflow file in `.github/workflows/` called `release-to-pypi.yml` with the following content:
+Create a workflow file in `.github/workflows/` called `release-to-pypi.yml` with the following content:
 
 
 ```yaml
 
-name: Publish Python Package to PyPI
+name: Publish Python distributiontoTestPyPI
 
 on:
-  push: # You can change this to any other trigger you like
+  push:
     tags:
-      - v*  # This will trigger the workflow for any new tag that starts with 'v'
-
-tags:
-  - v*
+      - 'v*'
 
 jobs:
-  build-release:
+  build:
+    name: Build distribution 📦
     runs-on: ubuntu-latest
-    name: Publish package to PyPI
+
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Setup Python
-        uses: actions/setup-python@v4.3.0
-        with:
-          python-version: 3.10 # Or whatever verison you want
-          cache: 'pip'
-      - name: Install the package
-        run: |
-          pip install .
-      - name: Build package
-        run: |
-          python -m build --no-isolation
-      - name: Publish package to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          username: __token__
-          password: ${{ secrets.PYPI_TOKEN }}
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        persist-credentials: false
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.x"
+
+    - name: Install pypa/build
+      run: >-
+        python3 -m
+        pip install
+        build
+        --user
+    - name: Install build dependencies
+      run: python3 -m pip install build setuptools setuptools_scm
+    - name: Build a binary wheel and a source tarball
+      run: python3 -m build
+    - name: Store the distribution packages
+      uses: actions/upload-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+
+  publish-to-testpypi:
+    name: Publish Python 🐍 distribution 📦 to TestPyPI
+    needs:
+    - build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/<package-name>
+
+    permissions:
+      id-token: write  # IMPORTANT: mandatory for trusted publishing
+
+    steps:
+    - name: Download all the dists
+      uses: actions/download-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+    - name: Publish distribution 📦 to TestPyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        repository-url: https://test.pypi.org/legacy/
 
 ```
 
-The above instructions triggers a GitHub Actions workflow that automatically publishes a Python package to PyPI whenever a new tag starting with "v" is pushed to the repository.
+The above instructions triggers a GitHub Actions workflow that automatically publishes a Python package to Test PyPI whenever a new tag starting with "v" is pushed to the repository.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-::::::::::::::::::::::::::::::::::::: callout
+::: spoiler
 
-An alternative method of publishing to PyPI using API tokens is the use of [Trusted Publishers](https://docs.pypi.org/trusted-publishers/). Trusted Publishers is a security enhancement for automating the publishing of Python packages to PyPI, particularly from continuous integration systems like GitHub Action. Instead of relying on long-lived API tokens, Trusted Publishers uses the [OpenID Connect](https://www.microsoft.com/en-us/security/business/security-101/what-is-openid-connect-oidc) (OIDC) authentication protocol to authenticate and authorise CI/CD workflows, which creates a secure and token-less method for package uploads. When a trusted workflow runs, it generates short-lived OIDC tokens that PyPI verifies, and ensures that only authorised workflows from a specific repository or organisation can publish. Although this method is out the scope of this episode, we recommend you to read about the Trusted Publishers approach, and consider its advantages and disadvantages before applying it to your workflows.
+### Trusted Publishers
 
-::::::::::::::::::::::::::::::::::::::::::::::::
+This method makes use of the latest recommended authenticated method called [Trusted Publishers](https://docs.pypi.org/trusted-publishers/). Trusted Publishers is a security enhancement for automating the publishing of Python packages to PyPI, particularly from continuous integration systems like GitHub Action. Instead of relying on long-lived API tokens, Trusted Publishers uses the [OpenID Connect](https://www.microsoft.com/en-us/security/business/security-101/what-is-openid-connect-oidc) (OIDC) authentication protocol to authenticate and authorise CI/CD workflows, which creates a secure and token-less method for package uploads. When a trusted workflow runs, it generates short-lived OIDC tokens that PyPI verifies, and ensures that only authorised workflows from a specific repository or organisation can publish. Although this method is out the scope of this episode, we recommend you to read about the Trusted Publishers approach, and consider its advantages and disadvantages before applying it to your workflows.
+
+:::
 
 
 ### Publishing to ORDA 
@@ -184,7 +213,7 @@ Figure 4 demonstrates how to upload your project to ORDA using their graphical u
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 4: DOI and Reproducibility
+## Challenge 2: DOI and Reproducibility
 
 In a research context, why is it important to cite software releases via a DOI for example, alongside academic papers?
 
@@ -240,10 +269,10 @@ Finally, once you have uploaded your file sources to ORDA, your software will be
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Use `.md` files for episodes when you want static content
-- Use `.Rmd` files for episodes when you need to generate output
-- Run `sandpaper::check_lesson()` to identify any issues with your lesson
-- Run `sandpaper::build_lesson()` to preview your lesson locally
+- You can easily publish your package on PyPI for the wider Python community, allowing your users to simply install your software using `pip install`.
+
+- The University of Sheffield's ORDA repository is another valuable platform to upload your software, further enabling software reproducibility, transparency, and research impact for all project collaborators involved.
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

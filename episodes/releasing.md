@@ -1,5 +1,5 @@
 ---
-title: "Publishing Python Packages"
+title: "Releasing Python Packages"
 teaching: 10
 exercises: 2
 editor_options: 
@@ -10,16 +10,18 @@ editor_options:
 
 :::::::::::::::::::::::::::::::::::::: questions
 
+- What does releasing software mean?
+
 - How can you prepare your software for releasing and publishing on different platforms?
-- How can GitHub's automation tools help with publishing your software?
-- What are the benefits of publishing your software on PyPI and ORDA?
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Understand the significance of releasing and publishing your software in the context of FAIR4RS.
-- Learn how to publish your software to PyPI and The University of Sheffield's ORDA repository.
+
+- Learn what other files and data can be released alongside the software.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -310,15 +312,10 @@ Remember to **never** publish any sensitive information, such as passwords, dire
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-
-
 ::::::::::::::::::::::::::::::::::::: keypoints
 
 - GitHub tags provide a way to manage specific software versions via releases, enabling developers to easily reference and distribute stable versions of their software for their users. 
 
-- You can easily publish your package on PyPI for the wider Python community, allowing your users to simply install your software using `pip install`.
-
-- The University of Sheffield's ORDA repository is another valuable platform to upload your software, further enabling software reproducibility, transparency, and research impact for all project collaborators involved.
-
+- Releases allow your software to be quickly and easily installed across different systems.
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
