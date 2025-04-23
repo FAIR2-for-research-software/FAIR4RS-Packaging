@@ -141,37 +141,33 @@ Note; although they share similarities, you should not confuse software versioni
 
 ## Dynamic Versioning using setuptools_scm
 
-At this point, you might be thinking; "__Do I have to manually update the version number in of my package every time I release a new version?__" Thankfully, the answer is no. Often, the version number associated to your package will typically be in multiple locations within your project, for example, in your `.toml` file and separately in your documentation. This means that manually updating every location for every release you have can be extremely cumbersome and prone to human-error, and therefore, you should avoid manually updating your versions. Fortunately, the `setuptools` library we looked at in previous episodes can help us automate these tasks.
+At this point, you might be thinking; "__Do I have to manually update the version number everywhere every release?__" Thankfully, the answer is no. Often, the version number associated to your package will typically be in multiple locations within your project, for example, in your `.toml` file and separately in your documentation. This means that manually updating every location for every release you have can be extremely cumbersome and prone to human-error, and therefore, you should avoid manually updating your versions. Fortunately, the `setuptools` library we looked at in previous episodes can help us automate these tasks.
 
 The most natural and simplest solution is to use [setuptools_scm](https://github.com/pypa/setuptools-scm) (abbreviated as Setuptools Semantic Versioning), which is an extension of the `setuptools` library. `setuptools_scm` simplifies versioning by dynamically generating version numbers based on your version control system (e.g. `git`). It can extract Python package versions using `git` metadata instead of having to manually declare them yourself. 
 
-::::::::::::::::::::::::::::::::::::: callout
+There are 3 changes to your `pyproject.toml` file required to get your project to build using the version number from the git tag instead of the manual version value:
 
-You can install `setuptools-scm` using `pip install setuptool-scm`.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-Following the installation, we can then amend declare the `setuptools-scm` variables in our project's `pyproject.toml` file:
+1. Add setuptools-scm to the required packages
+2. Replace the manual version with a dynamic one
+3. Add the setuptools.scm table header to instruct the build process to use setuptools-scm
 
 
 ```toml
 
 [build-system]
-requires = ["setuptools>=64", "setuptools-scm>=8"]
-build-backend = "setuptools.build_meta"
+requires = ["setuptools"]
+
 
 [project]
+name = "fibonacci"
+description = "A package to calculate the fibonacci sequence"
+dependencies = ["pandas", "numpy"]
 dynamic = ["version"]
 
 [tool.setuptools_scm]
-version_file = "src/_version.py"
-
 ```
 
-Let's break down the instructions above. As we've seen before, the `[build-system]` defines the build dependencies, ensuring `setuptools` and `setuptools_scm` are installed for building the project. When you run a build tool (like `pip` or `build`), it will first install these dependencies to handle the build process. The `[project]` section provides metadata about the project and its configuration. Notice that the `version` field is commented out to highlight that the version will not be statically defined, but instead, it will be dynamically determined by `setuptools_scm` in the line below that contains `dynamic = ["version"]`. Finally, `[tool.setuptools_scm]` specifically configures `setuptools_scm`. The `version_file` field should contain the path to where `setuptools_scm` will write the version information, though, be sure you substitute in the path of your own packge name.. By specifying a `version_file`, you instruct `setuptools_scm` to create or update this file with version information. For further details on the usage of `setuptools_scm`, you can refer to the [documentation](https://setuptools-scm.readthedocs.io/en/stable/).
-
-Under its hood, `setuptools_scm` is designed automatically to integrate with Git, and by default, uses Git tags to manage version numbers. It looks at the Git history of your project and extracts the version number from the most recent Git tag. If no Git tags are found, it generates one for you. Overall, once you've set up `setuptools_scm` in your `pyproject.toml` file, the workflow to version bump your package will look like:
-
+Once you've set up `setuptools_scm` in your `pyproject.toml` file, the workflow to version bump your package will look like:
 
 
 1. **Commit your changes**:
@@ -199,7 +195,7 @@ Under its hood, `setuptools_scm` is designed automatically to integrate with Git
      ```bash
      pip install .
      ```
-Following this, you can confirm your new version by, for example, looking into your `src/_version.py` file or printing your package's `__version__` attribute. Ultimately, this means that your package's Git tags, `__version__`, `pyproject.toml` and any other file containing your package version version will automatically updated and synchronised with each other. So when users or other developers are using your framework, they're able to accurately tracking any code changes and dependencies, allowing them to reliably recreate specific versions of your software at any point in time.
+Following this, you can confirm your new version by printing your package's `__version__` attribute. Ultimately, this means that your package's Git tags, `__version__`, `pyproject.toml` and any other file containing your package version version will automatically updated and synchronised with each other. So when users or other developers are using your framework, they're able to accurately tracking any code changes and dependencies, allowing them to reliably recreate specific versions of your software at any point in time.
 
 
 ::::::::::::::::::::::::::::::::::::: callout
