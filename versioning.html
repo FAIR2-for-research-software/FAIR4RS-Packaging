@@ -121,11 +121,11 @@
   FAIR4RS Tools for Reproducibility: Packaging
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 74%" class="percentage">
-    74%
+<aside class="col-md-12 lesson-progress"><div style="width: 65%" class="percentage">
+    65%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 74%" aria-valuenow="74" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 65%" aria-valuenow="65" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -267,7 +267,16 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="releasing.html">6. Publishing Python Packages</a>
+        <a href="releasing.html">6. Releasing Python Packages</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush8">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading8">
+        <a href="publishing-packages.html">7. Publishing Packages</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -325,13 +334,13 @@
           Previous: Creating Packages
         </a>
         <a class="chapter-link float-end" href="releasing.html" rel="next">
-          Next: Publishing Python...
+          Next: Releasing Python...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Versioning</h1>
-        <p>Last updated on 2025-04-22 |
+        <p>Last updated on 2025-04-23 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/versioning.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -525,7 +534,7 @@ your reasoning.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <p>Think about whether the new feature introduces any breaking changes
 for existing users.</p>
@@ -538,7 +547,7 @@ for existing users.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>According to semantic versioning, since the new feature adds
 functionality in a backward-compatible manner, the version should be
@@ -587,16 +596,15 @@ numbers that accurately reflect the changes</td>
 </div>
 </section><section><h2 class="section-heading" id="dynamic-versioning-using-setuptools_scm">Dynamic Versioning using setuptools_scm<a class="anchor" aria-label="anchor" href="#dynamic-versioning-using-setuptools_scm"></a></h2>
 <hr class="half-width"><p>At this point, you might be thinking; “<strong>Do I have to manually
-update the version number in of my package every time I release a new
-version?</strong>” Thankfully, the answer is no. Often, the version
-number associated to your package will typically be in multiple
-locations within your project, for example, in your <code>.toml</code>
-file and separately in your documentation. This means that manually
-updating every location for every release you have can be extremely
-cumbersome and prone to human-error, and therefore, you should avoid
-manually updating your versions. Fortunately, the
-<code>setuptools</code> library we looked at in previous episodes can
-help us automate these tasks.</p>
+update the version number everywhere every release?</strong>”
+Thankfully, the answer is no. Often, the version number associated to
+your package will typically be in multiple locations within your
+project, for example, in your <code>.toml</code> file and separately in
+your documentation. This means that manually updating every location for
+every release you have can be extremely cumbersome and prone to
+human-error, and therefore, you should avoid manually updating your
+versions. Fortunately, the <code>setuptools</code> library we looked at
+in previous episodes can help us automate these tasks.</p>
 <p>The most natural and simplest solution is to use <a href="https://github.com/pypa/setuptools-scm" class="external-link">setuptools_scm</a>
 (abbreviated as Setuptools Semantic Versioning), which is an extension
 of the <code>setuptools</code> library. <code>setuptools_scm</code>
@@ -604,61 +612,32 @@ simplifies versioning by dynamically generating version numbers based on
 your version control system (e.g. <code>git</code>). It can extract
 Python package versions using <code>git</code> metadata instead of
 having to manually declare them yourself.</p>
-<div id="callout5" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout</h3>
-<div class="callout-content">
-<p>You can install <code>setuptools-scm</code> using
-<code>pip install setuptool-scm</code>.</p>
-</div>
-</div>
-</div>
-<p>Following the installation, we can then amend declare the
-<code>setuptools-scm</code> variables in our project’s
-<code>pyproject.toml</code> file:</p>
-<div class="codewrapper sourceCode" id="cb2">
+<p>There are 3 changes to your <code>pyproject.toml</code> file required
+to get your project to build using the version number from the git tag
+instead of the manual version value:</p>
+<ol style="list-style-type: decimal"><li>Add setuptools-scm to the required packages</li>
+<li>Replace the manual version with a dynamic one</li>
+<li>Add the setuptools.scm table header to instruct the build process to
+use setuptools-scm</li>
+</ol><div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">TOML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode toml" tabindex="0"><code class="sourceCode toml"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="kw">[build-system]</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"setuptools&gt;=64"</span><span class="op">,</span> <span class="st">"setuptools-scm&gt;=8"</span><span class="op">]</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"setuptools.build_meta"</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"setuptools"</span><span class="op">]</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a></span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="kw">[project]</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="dt">dynamic</span> <span class="op">=</span> <span class="op">[</span><span class="st">"version"</span><span class="op">]</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="kw">[tool.setuptools_scm]</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="dt">version_file</span> <span class="op">=</span> <span class="st">"src/_version.py"</span></span></code></pre>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci"</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A package to calculate the fibonacci sequence"</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pandas"</span><span class="op">,</span> <span class="st">"numpy"</span><span class="op">]</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="dt">dynamic</span> <span class="op">=</span> <span class="op">[</span><span class="st">"version"</span><span class="op">]</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="kw">[tool.setuptools_scm]</span></span></code></pre>
 </div>
-<p>Let’s break down the instructions above. As we’ve seen before, the
-<code>[build-system]</code> defines the build dependencies, ensuring
-<code>setuptools</code> and <code>setuptools_scm</code> are installed
-for building the project. When you run a build tool (like
-<code>pip</code> or <code>build</code>), it will first install these
-dependencies to handle the build process. The <code>[project]</code>
-section provides metadata about the project and its configuration.
-Notice that the <code>version</code> field is commented out to highlight
-that the version will not be statically defined, but instead, it will be
-dynamically determined by <code>setuptools_scm</code> in the line below
-that contains <code>dynamic = ["version"]</code>. Finally,
-<code>[tool.setuptools_scm]</code> specifically configures
-<code>setuptools_scm</code>. The <code>version_file</code> field should
-contain the path to where <code>setuptools_scm</code> will write the
-version information, though, be sure you substitute in the path of your
-own packge name.. By specifying a <code>version_file</code>, you
-instruct <code>setuptools_scm</code> to create or update this file with
-version information. For further details on the usage of
-<code>setuptools_scm</code>, you can refer to the <a href="https://setuptools-scm.readthedocs.io/en/stable/" class="external-link">documentation</a>.</p>
-<p>Under its hood, <code>setuptools_scm</code> is designed automatically
-to integrate with Git, and by default, uses Git tags to manage version
-numbers. It looks at the Git history of your project and extracts the
-version number from the most recent Git tag. If no Git tags are found,
-it generates one for you. Overall, once you’ve set up
-<code>setuptools_scm</code> in your <code>pyproject.toml</code> file,
-the workflow to version bump your package will look like:</p>
+<p>Once you’ve set up <code>setuptools_scm</code> in your
+<code>pyproject.toml</code> file, the workflow to version bump your
+package will look like:</p>
 <ol style="list-style-type: decimal"><li>
 <strong>Commit your changes</strong>:
 <ul><li>
@@ -705,8 +684,7 @@ from the Git tag.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">pip</span> install .</span></code></pre>
 </div>
-<p>Following this, you can confirm your new version by, for example,
-looking into your <code>src/_version.py</code> file or printing your
+<p>Following this, you can confirm your new version by printing your
 package’s <code>__version__</code> attribute. Ultimately, this means
 that your package’s Git tags, <code>__version__</code>,
 <code>pyproject.toml</code> and any other file containing your package
@@ -717,7 +695,7 @@ allowing them to reliably recreate specific versions of your software at
 any point in time.</p>
 </li>
 </ul></li>
-</ol><div id="callout6" class="callout">
+</ol><div id="callout5" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -777,7 +755,7 @@ any links that you are not going to use.
           Previous: Creating Packages
         </a>
         <a class="chapter-link float-end" href="releasing.html" rel="next">
-          Next: Publishing Python...
+          Next: Releasing Python...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
@@ -836,8 +814,8 @@ any links that you are not going to use.
   "url": "https://fair2-for-research-software.github.io/FAIR4RS-Packaging/versioning.html",
   "identifier": "https://fair2-for-research-software.github.io/FAIR4RS-Packaging/versioning.html",
   "dateCreated": "2024-04-02",
-  "dateModified": "2025-04-22",
-  "datePublished": "2025-04-22"
+  "dateModified": "2025-04-23",
+  "datePublished": "2025-04-23"
 }
 
   </script><script>
