@@ -89,7 +89,7 @@ As we've touched on above, there are several benefits to packaging your software
 
 - **Research impact and collaboration**: From a research impact perspective, software packaging ensures reproducibility, accessibility, and ease of dissemination to the wider research community.
 
-Once you have convinced yourself that packaging your software is right for your project, there are some important questions that you, as the developer, should consider before getting started:
+If you decide that packaging your software is right for your project, there are some important questions that you, as the developer, should consider before getting started:
 
 - **Target Users**: Who are you building this package for? Beginners, experienced users, or a specific domain? This will influence the level of detail needed in the documentation and the complexity of dependencies you may need to include.
 
