@@ -155,12 +155,12 @@ keywords = ["fibonacci", "maths"]
 :::
 :::
 
-Running `py -m pip install .` will install your package. Just ensure your terminal's working directory is the same as the `pyproject.toml` file!
+Running `python -m pip install .` will install your package. Just ensure your terminal's working directory is the same as the `pyproject.toml` file!
 
 ::: callout
 ### Editable Install
 When installing your own package locally, there is an option called editable or `-e` for short.
-`py -m pip install -e .`
+`python -m pip install -e .`
 
 With a default installation (without -e), any changes to your source package will only appear in your Python environment when your package is rebuilt and reinstalled. The editable option allows for quick development of a package by removing that need to be reinstalled, for this reason it is sometimes called development mode!
 
