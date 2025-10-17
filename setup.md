@@ -38,7 +38,7 @@ Use Terminal.app.
 - Located in Applications → Utilities → Terminal, or open using `Cmd+Space` and type "Terminal".
 - Basic commands: `ls` (list files), `cd` (change directory), `clear` (clear screen).
 - To confirm if Python is available, type `python3 --version` in your terminal.
-- On newer macOS installations, try both `python --version` and `python3 --version`. If it's correctly installed, you should see the correct version number printed in your terminal.
+- On some macOS installations `python` may refer to Python 2, so you can use `python3` to be specific. Commands throughout the course will use `python`, but please use `python3` if you need to. If it's correctly installed, you should see the correct version number printed in your terminal.
 
 ::::::::::::::::::::::::
 
@@ -52,7 +52,7 @@ Use Terminal
 - Open with `Ctrl+Alt+T` or find it in application menu (often called "Terminal", or GNOME Terminal").
 - Basic commands: `ls` (list files), `cd` (change directory), `clear` (clear screen).
 - To confirm if Python is available, type `python3 --version` in your terminal.
-- On some distributions, `python` may refer to Python 2, so use `python3` to be specific. If it's correctly installed, you should see the correct version number printed in your terminal.
+- On some distributions, `python` may refer to Python 2, so you can use `python3` to be specific. Commands throughout the course will use `python`, but please use `python3` if you need to. If it's correctly installed, you should see the correct version number printed in your terminal.
 
 ::::::::::::::::::::::::
 

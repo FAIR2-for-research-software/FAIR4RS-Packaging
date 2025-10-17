@@ -77,7 +77,7 @@ pip itself is a Python package that can be found on [PyPI](https://pypi.org/proj
 The most common way to use pip is from the command line. At the top of a package page on PyPI will be the example line you need to install the package
 
 ```
-py -m pip install numpy
+python -m pip install numpy
 ```
 
 The above will install [numpy](https://pypi.org/project/numpy/) from PyPI, a popular scientific computing package enabling a wide range of mathematical and scientific functions. 
@@ -90,7 +90,7 @@ You may notice a wheel file download during the pip install, for example `Downlo
 ::: challenge
 ### Exercise 2: Create venv and install Numpy
 
-Step 1: Create a venv in the .venv directory using the command `py -m venv .venv` and activate it with
+Step 1: Create a venv in the .venv directory using the command `python -m venv .venv` and activate it with
 
 ::: tab
 
@@ -111,7 +111,7 @@ When activated you should see the name of your environment in brackets at the st
 
 Step 2: Install Numpy into your new environment
 
-Step 3: Check your results with `py -m pip list`
+Step 3: Check your results with `python -m pip list`
 
 Step 4: Deactivate your environment with `deactivate`
 
@@ -132,7 +132,7 @@ pip can also be used to install packages from source. This means that the packag
 
 ### Windows 
 
-`py -m pip install .`
+`python -m pip install .`
 
 
 
