@@ -155,7 +155,7 @@ There are 3 changes to your `pyproject.toml` file required to get your project t
 ```toml
 
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools", "setuptools-scm"]
 
 
 [project]
