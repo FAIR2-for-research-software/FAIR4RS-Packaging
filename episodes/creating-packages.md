@@ -111,7 +111,7 @@ requires = ["setuptools"]
 
 
 [project]
-name = "fibonacci"
+name = "fibonacci_uos_name"
 version = "0.1.0"
 description = "A package to calculate the fibonacci sequence"
 dependencies = ["pandas", "numpy"]
