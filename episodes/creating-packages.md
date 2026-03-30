@@ -56,6 +56,7 @@ In this episode we will only be creating a minimal example so many of the files 
 📦 fibonacci_uos_name/
 ├── 📂 fibonacci_uos_name/
 │   └── 📄 sequence.py
+│   └── 📄 __init__.py
 ├── 📄 pyproject.toml
 └── 📂 tests/
     └── 📄 test_fibonacci.py
