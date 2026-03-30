@@ -147,7 +147,7 @@ Create a `pyproject.toml` file with the two required tables. In the `[project]` 
 requires = ["setuptools"]
 
 [project]
-name = "fibonacci"
+name = "fibonacci_uos_name"
 version = "0.1.0"
 description = "A package which can produce the Fibonacci sequence"
 authors = [{name = "your_name", email="youremail@email.com"}]
