@@ -158,6 +158,42 @@ keywords = ["fibonacci", "maths"]
 
 Running `python -m pip install .` will install your package. Just ensure your terminal's working directory is the same as the `pyproject.toml` file!
 
+### Project & Packaging Naming
+
+Referring back to the project structure:
+```
+📦 my_project/
+├── 📂 my_package/
+│   └── 📄 my_code.py
+│   └── 📄 __init__.py
+└── 📄 pyproject.toml
+```
+
+The name of your package directory is the name that users will import when they use the package
+
+```python
+from my_package.my_code import my_func
+
+my_func()
+```
+
+PyPI which we looked at in the [accessing packages](accessing-packages.md) episode and other tools like build which we cover later, use the project name specified in your pyproject.toml. It is common to keep these names consistent, so the package name the user installs is the same that is used to import the package.
+
+:::callout
+### Package Name Discrepency
+
+Some packages do not use the same name, one famous example is pillow. The project name is pillow but the package you import inside is PIL.
+
+```bash
+pip install pillow
+```
+
+```python
+from PIL import Image
+```
+:::
+
+
 ::: callout
 ### Editable Install
 When installing your own package locally, there is an option called editable or `-e` for short.
