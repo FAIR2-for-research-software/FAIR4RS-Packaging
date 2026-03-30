@@ -87,15 +87,31 @@ def compute(n_terms):
 ::: challenge
 ### Using your Python module
 
-Create a script in your project directory that imports and uses your sequence script. This will serve as a good quick test that it works.
+With your Python environment activate, launch Python and test importing and using your package.
 
 ::: solution
-1. Create the file in the project folder `/fibonacci_uos_name`, for example `use_fibonacci.py`.
-2. Import and run the compute function:
+**1. Navigate to a different directory to ensure you are importing the package not the local directory**
+
+```bash
+cd ../..
+```
+
+**2. Launch Python and import package**
+
+```bash 
+python
+```
 ```python
 from fibonacci_uos_name.sequence import compute
 
 compute(5)
+```
+
+or
+```python
+import fibonacci_uos_name.sequence
+
+fibonacci_uos_name.sequence.compute(5)
 ```
 :::
 :::
