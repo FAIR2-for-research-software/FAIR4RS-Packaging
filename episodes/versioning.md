@@ -159,7 +159,7 @@ requires = ["setuptools", "setuptools-scm"]
 
 
 [project]
-name = "fibonacci"
+name = "fibonacci_uos_name"
 description = "A package to calculate the fibonacci sequence"
 dependencies = ["pandas", "numpy"]
 dynamic = ["version"]

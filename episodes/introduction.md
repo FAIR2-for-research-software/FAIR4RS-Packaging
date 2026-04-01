@@ -108,6 +108,8 @@ The most basic directory structure of a Python package looks something like:
 ```
 📦 my_project/
 ├── 📂 my_package/
+│   └── 📄 my_code.py
+│   └── 📄 __init__.py
 └── 📄 pyproject.toml
 
 where
@@ -124,16 +126,7 @@ Tools such as `setuptools` and `pip` use the `pyproject.toml` file to configure 
 
 ### Optional: What is `__init__.py`?
 
-At this point, it's worth discussing the use of the `__init__.py` file that you might have come across before when packaging. Historically, the `__init__.py` script has been used to mark a directory as a Python package, allowing the contained modules to be imported (note; the use of double under lines in Python, often abbreviated to `dunder` lines, signal that this script should be "hidden" from users, helping distinguish this script from others.) It also contains any initialisation code for the package. The directory's structure might look something like:
-
-
-```
-📦 my_project/
-├── 📂 my_package/
-│   └── 📄 __init__.py
-└── 📄 pyproject.toml
-```
-
+At this point, it's worth discussing the use of the `__init__.py` file. The `__init__.py` script is used to mark a directory as a Python package (different to a sotware package), allowing the contained modules to be imported (note; the use of double under lines in Python, often abbreviated to `dunder` lines, signal that this script should be "hidden" from users, helping distinguish this script from others). It also contains any initialisation code for the package
 For instance, consider the times you have imported a package, such as [numpy](www.numpy.org). The ability to write:
 
 ```Python
@@ -141,8 +134,7 @@ import numpy
 ```
 is enabled by the modular structuring of the numpy package. This includes presence of the `__init__.py` file, which signals to Python that the directory is a package, allowing to import its content using the `import` statement. The complete `import numpy` statement then means Python searches for the `numpy` package  in its search path (`sys.path`) and loads its contents into the namespace under the name `numpy`. Packages that follow the folder structure above are often referred to as **regular packages**.
 
-However, in Python versions >= 3.3, the concept of **implicit namespace packages** (see [PEP 420](https://peps.Python.org/pep-0420/)) was introduced. Namespace packages are commonly used to split a regular Python package (as described above) across multiple directories, which ultimately means the `__init__.py` file is technically not required to create any Python package. For the purposes of this course, we will omit the use of the `__init__.py` script.
-
+However, in Python versions >= 3.3, the concept of **implicit namespace packages** (see [PEP 420](https://peps.Python.org/pep-0420/)) was introduced. Namespace packages are commonly used to split a regular Python package (as described above) across multiple directories, which ultimately means the `__init__.py` file is technically not required to create any Python package. For the purposes of this course, we will use an `__init__.py` to keep with convention and avoid complications with namespace packages.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
