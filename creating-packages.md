@@ -50,12 +50,13 @@ Think back to the earlier episodes and try to recall all the things that can go 
 :::
 :::
 
-In this episode we will only be creating a minimal example so many of the files you have thought of won't be included. Next we will be creating our directory structure. In either your `documents` folder if you are on Windows or your `home` directory if you are on macOS or Linux, create a folder called `my_project` 
+In this episode we will only be creating a minimal example so many of the files you have thought of won't be included. Next we will be creating our directory structure. In either your `documents` folder if you are on Windows or your `home` directory if you are on macOS or Linux, create a folder called `fibonnaci_uos_name` 
 
 ```
-📦 my_project/
-├── 📂 my_package/
-│   └── 📄 fibonacci.py
+📦 fibonacci_uos_name/
+├── 📂 fibonacci_uos_name/
+│   └── 📄 sequence.py
+│   └── 📄 __init__.py
 ├── 📄 pyproject.toml
 └── 📂 tests/
     └── 📄 test_fibonacci.py
@@ -66,10 +67,10 @@ The first thing we will do in this project is create the Python module (the actu
 ::: challenge
 ### Creating Python module
 
-1. Create a Python file called `fibonacci.py` as shown in the structure above.
+1. Create a Python file called `sequence.py` as shown in the structure above.
 2. Add the following code which contains a function that returns the Fibonacci sequence
 ```python
-def fibonacci(n_terms):
+def compute(n_terms):
   num1 = 0
   num2 = 1
   next_num = 1
@@ -86,15 +87,15 @@ def fibonacci(n_terms):
 ::: challenge
 ### Using your Python module
 
-Create a script in your project directory that imports and uses your Fibonacci script. This will serve as a good quick test that it works.
+Create a script in your project directory that imports and uses your sequence script. This will serve as a good quick test that it works.
 
 ::: solution
-1. Create the file in `/my_project`, for example `fibonacci_test.py`.
-2. Import and run the Fibonacci function:
+1. Create the file in the project folder `/fibonacci_uos_name`, for example `use_fibonacci.py`.
+2. Import and run the compute function:
 ```python
-from my_package.fibonacci import fibonacci
+from fibonacci_uos_name.sequence import compute
 
-fibonacci(5)
+compute(5)
 ```
 :::
 :::
@@ -110,7 +111,7 @@ requires = ["setuptools"]
 
 
 [project]
-name = "fibonacci"
+name = "fibonacci_uos_name"
 version = "0.1.0"
 description = "A package to calculate the fibonacci sequence"
 dependencies = ["pandas", "numpy"]
@@ -146,7 +147,7 @@ Create a `pyproject.toml` file with the two required tables. In the `[project]` 
 requires = ["setuptools"]
 
 [project]
-name = "fibonacci"
+name = "fibonacci_uos_name"
 version = "0.1.0"
 description = "A package which can produce the Fibonacci sequence"
 authors = [{name = "your_name", email="youremail@email.com"}]
