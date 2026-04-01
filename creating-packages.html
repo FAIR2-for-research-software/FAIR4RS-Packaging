@@ -342,7 +342,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Creating Packages</h1>
-        <p>Last updated on 2026-03-31 |
+        <p>Last updated on 2026-04-01 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/creating-packages.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -440,10 +440,11 @@ the files you have thought of won’t be included. Next we will be
 creating our directory structure. In either your <code>documents</code>
 folder if you are on Windows or your <code>home</code> directory if you
 are on macOS or Linux, create a folder called
-<code>my_project</code></p>
-<pre><code>📦 my_project/
-├── 📂 my_package/
-│   └── 📄 fibonacci.py
+<code>fibonnaci_uos_name</code></p>
+<pre><code>📦 fibonacci_uos_name/
+├── 📂 fibonacci_uos_name/
+│   └── 📄 sequence.py
+│   └── 📄 __init__.py
 ├── 📄 pyproject.toml
 └── 📂 tests/
     └── 📄 test_fibonacci.py</code></pre>
@@ -457,14 +458,14 @@ module (the actual code!).</p>
 <div id="creating-python-module" class="callout-inner">
 <h3 class="callout-title">Creating Python module</h3>
 <div class="callout-content">
-<ol style="list-style-type: decimal"><li>Create a Python file called <code>fibonacci.py</code> as shown in
-the structure above.</li>
+<ol style="list-style-type: decimal"><li>Create a Python file called <code>sequence.py</code> as shown in the
+structure above.</li>
 <li>Add the following code which contains a function that returns the
 Fibonacci sequence</li>
 </ol><div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="kw">def</span> fibonacci(n_terms):</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="kw">def</span> compute(n_terms):</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  num1 <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  num2 <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  next_num <span class="op">=</span> <span class="dv">1</span></span>
@@ -488,8 +489,7 @@ Fibonacci sequence</li>
 <h3 class="callout-title">Using your Python module</h3>
 <div class="callout-content">
 <p>Create a script in your project directory that imports and uses your
-Fibonacci script. This will serve as a good quick test that it
-works.</p>
+sequence script. This will serve as a good quick test that it works.</p>
 </div>
 </div>
 </div>
@@ -500,15 +500,16 @@ works.</p>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<ol style="list-style-type: decimal"><li>Create the file in <code>/my_project</code>, for example
-<code>fibonacci_test.py</code>.</li>
-<li>Import and run the Fibonacci function:</li>
+<ol style="list-style-type: decimal"><li>Create the file in the project folder
+<code>/fibonacci_uos_name</code>, for example
+<code>use_fibonacci.py</code>.</li>
+<li>Import and run the compute function:</li>
 </ol><div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">from</span> my_package.fibonacci <span class="im">import</span> fibonacci</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">from</span> fibonacci_uos_name.sequence <span class="im">import</span> compute</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>fibonacci(<span class="dv">5</span>)</span></code></pre>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>compute(<span class="dv">5</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -531,7 +532,7 @@ below.</p>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="kw">[project]</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci"</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci_uos_name"</span></span>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
 <span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A package to calculate the fibonacci sequence"</span></span>
 <span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pandas"</span><span class="op">,</span> <span class="st">"numpy"</span><span class="op">]</span></span></code></pre>
@@ -595,7 +596,7 @@ keys:</p>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"setuptools"</span><span class="op">]</span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="kw">[project]</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci"</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci_uos_name"</span></span>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
 <span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A package which can produce the Fibonacci sequence"</span></span>
 <span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[{</span><span class="dt">name</span><span class="op"> =</span> <span class="st">"your_name"</span><span class="op">, </span><span class="dt">email</span><span class="op">=</span><span class="st">"youremail@email.com"</span><span class="op">}]</span></span>
@@ -712,8 +713,8 @@ any links that you are not going to use.
   "url": "https://fair2-for-research-software.github.io/FAIR4RS-Packaging/creating-packages.html",
   "identifier": "https://fair2-for-research-software.github.io/FAIR4RS-Packaging/creating-packages.html",
   "dateCreated": "2024-04-02",
-  "dateModified": "2026-03-31",
-  "datePublished": "2026-03-31"
+  "dateModified": "2026-04-01",
+  "datePublished": "2026-04-01"
 }
 
   </script><script>

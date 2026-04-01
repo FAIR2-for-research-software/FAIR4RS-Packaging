@@ -386,7 +386,7 @@
         
 <section id="aio-introduction"><p>Content from <a href="introduction.html">Software Packaging</a></p>
 <hr>
-<p>Last updated on 2026-03-31 |
+<p>Last updated on 2026-04-01 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -492,7 +492,7 @@ package attribute in terms of the software attribute.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
 <div class="accordion-body">
 <p>The above callout should help you think about a few different
 possible analogies.</p>
@@ -505,7 +505,7 @@ possible analogies.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li><p>Box of items: The software itself (source code, data,
@@ -569,6 +569,8 @@ position to start packaging your software.</p>
 something like:</p>
 <pre><code>📦 my_project/
 ├── 📂 my_package/
+│   └── 📄 my_code.py
+│   └── 📄 __init__.py
 └── 📄 pyproject.toml
 
 where
@@ -585,27 +587,21 @@ more depth in the next couple of episodes.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Optional: What is __init__.py? </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>At this point, it’s worth discussing the use of the
-<code>__init__.py</code> file that you might have come across before
-when packaging. Historically, the <code>__init__.py</code> script has
-been used to mark a directory as a Python package, allowing the
-contained modules to be imported (note; the use of double under lines in
-Python, often abbreviated to <code>dunder</code> lines, signal that this
-script should be “hidden” from users, helping distinguish this script
-from others.) It also contains any initialisation code for the package.
-The directory’s structure might look something like:</p>
-<pre><code>📦 my_project/
-├── 📂 my_package/
-│   └── 📄 __init__.py
-└── 📄 pyproject.toml</code></pre>
-<p>For instance, consider the times you have imported a package, such as
-<a href="../www.numpy.org">numpy</a>. The ability to write:</p>
-<div class="codewrapper sourceCode" id="cb3">
+<code>__init__.py</code> file. The <code>__init__.py</code> script is
+used to mark a directory as a Python package (different to a sotware
+package), allowing the contained modules to be imported (note; the use
+of double under lines in Python, often abbreviated to
+<code>dunder</code> lines, signal that this script should be “hidden”
+from users, helping distinguish this script from others). It also
+contains any initialisation code for the package For instance, consider
+the times you have imported a package, such as <a href="../www.numpy.org">numpy</a>. The ability to write:</p>
+<div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">import</span> numpy</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">import</span> numpy</span></code></pre>
 </div>
 <p>is enabled by the modular structuring of the numpy package. This
 includes presence of the <code>__init__.py</code> file, which signals to
@@ -621,8 +617,9 @@ often referred to as <strong>regular packages</strong>.</p>
 Namespace packages are commonly used to split a regular Python package
 (as described above) across multiple directories, which ultimately means
 the <code>__init__.py</code> file is technically not required to create
-any Python package. For the purposes of this course, we will omit the
-use of the <code>__init__.py</code> script.</p>
+any Python package. For the purposes of this course, we will use an
+<code>__init__.py</code> to keep with convention and avoid complications
+with namespace packages.</p>
 </div>
 </div>
 </div>
@@ -648,7 +645,7 @@ to provide better organisation, readability, and compatibility?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
 <div class="accordion-body">
 <p>Use the emoji folder structure above to get you started.</p>
 </div>
@@ -660,7 +657,7 @@ to provide better organisation, readability, and compatibility?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>A possible improvement could be to include the following to your
 package:</p>
@@ -720,7 +717,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-package-file-history"><p>Content from <a href="package-file-history.html">Package File History</a></p>
 <hr>
-<p>Last updated on 2026-03-31 |
+<p>Last updated on 2026-04-01 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/package-file-history.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 11 minutes</p>
@@ -822,7 +819,7 @@ be with using a python file to create python packages</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <p>Think about the differences between a code file and a text file</p>
 </div>
@@ -834,7 +831,7 @@ be with using a python file to create python packages</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>As <code>setup.py</code> is a code file, there is a potential for
@@ -945,7 +942,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-accessing-packages"><p>Content from <a href="accessing-packages.html">Accessing Packages</a></p>
 <hr>
-<p>Last updated on 2026-03-31 |
+<p>Last updated on 2026-04-01 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/accessing-packages.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 32 minutes</p>
@@ -1131,7 +1128,7 @@ brackets at the start of your terminal line</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Virtual Environments </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>Check out <a href="https://docs.python.org/3/l%5BPyPI%5D(https://pypi.org/project/pip/)ibrary/venv.html" class="external-link">this
 documentation</a> or the FAIR4RS course on virtual environments to learn
@@ -1173,7 +1170,7 @@ packages you’re developing.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>It may be worth checking with the class at this point that they are
 all familiar with the -m notation, and what the above command does
@@ -1211,7 +1208,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-creating-packages"><p>Content from <a href="creating-packages.html">Creating Packages</a></p>
 <hr>
-<p>Last updated on 2026-03-31 |
+<p>Last updated on 2026-04-01 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/creating-packages.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -1316,10 +1313,11 @@ the files you have thought of won’t be included. Next we will be
 creating our directory structure. In either your <code>documents</code>
 folder if you are on Windows or your <code>home</code> directory if you
 are on macOS or Linux, create a folder called
-<code>my_project</code></p>
-<pre><code>📦 my_project/
-├── 📂 my_package/
-│   └── 📄 fibonacci.py
+<code>fibonnaci_uos_name</code></p>
+<pre><code>📦 fibonacci_uos_name/
+├── 📂 fibonacci_uos_name/
+│   └── 📄 sequence.py
+│   └── 📄 __init__.py
 ├── 📄 pyproject.toml
 └── 📂 tests/
     └── 📄 test_fibonacci.py</code></pre>
@@ -1334,15 +1332,15 @@ module (the actual code!).</p>
 <h3 class="callout-title">Creating Python module</h3>
 <div class="callout-content">
 <ol style="list-style-type: decimal">
-<li>Create a Python file called <code>fibonacci.py</code> as shown in
-the structure above.</li>
+<li>Create a Python file called <code>sequence.py</code> as shown in the
+structure above.</li>
 <li>Add the following code which contains a function that returns the
 Fibonacci sequence</li>
 </ol>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="kw">def</span> fibonacci(n_terms):</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="kw">def</span> compute(n_terms):</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  num1 <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  num2 <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  next_num <span class="op">=</span> <span class="dv">1</span></span>
@@ -1366,8 +1364,7 @@ Fibonacci sequence</li>
 <h3 class="callout-title">Using your Python module</h3>
 <div class="callout-content">
 <p>Create a script in your project directory that imports and uses your
-Fibonacci script. This will serve as a good quick test that it
-works.</p>
+sequence script. This will serve as a good quick test that it works.</p>
 </div>
 </div>
 </div>
@@ -1379,16 +1376,17 @@ works.</p>
 <div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
-<li>Create the file in <code>/my_project</code>, for example
-<code>fibonacci_test.py</code>.</li>
-<li>Import and run the Fibonacci function:</li>
+<li>Create the file in the project folder
+<code>/fibonacci_uos_name</code>, for example
+<code>use_fibonacci.py</code>.</li>
+<li>Import and run the compute function:</li>
 </ol>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">from</span> my_package.fibonacci <span class="im">import</span> fibonacci</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">from</span> fibonacci_uos_name.sequence <span class="im">import</span> compute</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>fibonacci(<span class="dv">5</span>)</span></code></pre>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>compute(<span class="dv">5</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -1413,7 +1411,7 @@ below.</p>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="kw">[project]</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci"</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci_uos_name"</span></span>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
 <span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A package to calculate the fibonacci sequence"</span></span>
 <span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pandas"</span><span class="op">,</span> <span class="st">"numpy"</span><span class="op">]</span></span></code></pre>
@@ -1481,7 +1479,7 @@ keys:</p>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"setuptools"</span><span class="op">]</span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="kw">[project]</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci"</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci_uos_name"</span></span>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
 <span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A package which can produce the Fibonacci sequence"</span></span>
 <span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[{</span><span class="dt">name</span><span class="op"> =</span> <span class="st">"your_name"</span><span class="op">, </span><span class="dt">email</span><span class="op">=</span><span class="st">"youremail@email.com"</span><span class="op">}]</span></span>
@@ -1537,7 +1535,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-versioning"><p>Content from <a href="versioning.html">Versioning</a></p>
 <hr>
-<p>Last updated on 2026-03-31 |
+<p>Last updated on 2026-04-01 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/versioning.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -1875,7 +1873,7 @@ use setuptools-scm</li>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a></span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="kw">[project]</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci"</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci_uos_name"</span></span>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A package to calculate the fibonacci sequence"</span></span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pandas"</span><span class="op">,</span> <span class="st">"numpy"</span><span class="op">]</span></span>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="dt">dynamic</span> <span class="op">=</span> <span class="op">[</span><span class="st">"version"</span><span class="op">]</span></span>
@@ -2008,7 +2006,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-releasing"><p>Content from <a href="releasing.html">Releasing Python Packages</a></p>
 <hr>
-<p>Last updated on 2026-03-31 |
+<p>Last updated on 2026-04-01 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/releasing.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -2277,7 +2275,7 @@ alternative actions could you consider instead?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <p>Think about the impact of deleting a tag or release in version
 control. How might you preserve historical data while managing updates
@@ -2291,7 +2289,7 @@ to tags and releases?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Deleting a tag or release in a version control system can disrupt
 historical tracking and cause confusion for current and future
@@ -2502,7 +2500,7 @@ resolve this issue.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
 <div class="accordion-body">
 <p>Does GitHub provide a way to view the output logs for a given
 workflow?</p>
@@ -2515,7 +2513,7 @@ workflow?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>There are several different approaches to debug this workflow. The
 first place to check would be the output log files from the workflow for
@@ -2577,7 +2575,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-publishing-packages"><p>Content from <a href="publishing-packages.html">Publishing Packages</a></p>
 <hr>
-<p>Last updated on 2026-03-31 |
+<p>Last updated on 2026-04-01 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/publishing-packages.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -3032,8 +3030,8 @@ any links that you are not going to use.
   "url": "https://fair2-for-research-software.github.io/FAIR4RS-Packaging/instructor/aio.html",
   "identifier": "https://fair2-for-research-software.github.io/FAIR4RS-Packaging/instructor/aio.html",
   "dateCreated": "2024-04-02",
-  "dateModified": "2026-03-31",
-  "datePublished": "2026-03-31"
+  "dateModified": "2026-04-01",
+  "datePublished": "2026-04-01"
 }
 
   </script><script>
