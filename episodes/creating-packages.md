@@ -46,7 +46,6 @@ Think back to the earlier episodes and try to recall all the things that can go 
 1. Python Module - This is the directory with the Python code that does the work.
 2. Configuration File - e.g. your pyproject.toml file
 3. Other metadata files - e.g. LICENCE, README.md, citation.cff
-4. Python Tests - A directory full of unit-tests and other tests
 :::
 :::
 
@@ -57,9 +56,7 @@ In this episode we will only be creating a minimal example so many of the files 
 ├── 📂 fibonacci_uos_name/
 │   └── 📄 sequence.py
 │   └── 📄 __init__.py
-├── 📄 pyproject.toml
-└── 📂 tests/
-    └── 📄 test_fibonacci.py
+└── 📄 pyproject.toml
 ```
 
 The first thing we will do in this project is create the Python module (the actual code!).
