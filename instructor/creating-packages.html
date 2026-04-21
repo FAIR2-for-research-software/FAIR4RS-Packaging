@@ -245,7 +245,7 @@
       </button>
     </div><!--/div.accordion-header-->
 
-    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#introduction">Introduction</a></li>
 <li><a href="#fibonacci-counter">Fibonacci Counter</a></li>
@@ -342,7 +342,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Creating Packages</h1>
-        <p>Last updated on 2026-04-14 |
+        <p>Last updated on 2026-04-21 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/creating-packages.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -467,17 +467,17 @@ Fibonacci sequence</li>
 </ol><div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="kw">def</span> compute(n_terms):</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  num1 <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  num2 <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  next_num <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  count <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  <span class="cf">while</span> count <span class="op">&lt;</span> n_terms:</span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>    <span class="bu">print</span>(num1)</span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    count <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>    num1, num2 <span class="op">=</span> num2, next_num</span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>    next_num <span class="op">=</span> num1 <span class="op">+</span> num2</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="kw">def</span> compute(n_terms):</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a>  num1 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a>  num2 <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a>  next_num <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a>  count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1" aria-label="code-block-2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1" aria-label="code-block-2-7"></a>  <span class="cf">while</span> count <span class="op">&lt;</span> n_terms:</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1" aria-label="code-block-2-8"></a>    <span class="bu">print</span>(num1)</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1" aria-label="code-block-2-9"></a>    count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1" aria-label="code-block-2-10"></a>    num1, num2 <span class="op">=</span> num2, next_num</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1" aria-label="code-block-2-11"></a>    next_num <span class="op">=</span> num1 <span class="op">+</span> num2</span></code></pre>
 </div>
 </div>
 </div>
@@ -509,9 +509,9 @@ sequence script. This will serve as a good quick test that it works.</p>
 </ol><div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">from</span> fibonacci_uos_name.sequence <span class="im">import</span> compute</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>compute(<span class="dv">5</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="im">from</span> fibonacci_uos_name.sequence <span class="im">import</span> compute</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a>compute(<span class="dv">5</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -528,16 +528,16 @@ below.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">TOML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode toml" tabindex="0"><code class="sourceCode toml"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="kw">[build-system]</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"setuptools"</span><span class="op">]</span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="kw">[project]</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci_uos_name"</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A package to calculate the fibonacci sequence"</span></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pandas"</span><span class="op">,</span> <span class="st">"numpy"</span><span class="op">]</span></span></code></pre>
+<pre class="sourceCode toml" tabindex="0"><code class="sourceCode toml"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a><span class="kw">[build-system]</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"setuptools"</span><span class="op">]</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1" aria-label="code-block-4-6"></a><span class="kw">[project]</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1" aria-label="code-block-4-7"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci_uos_name"</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1" aria-label="code-block-4-8"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1" aria-label="code-block-4-9"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A package to calculate the fibonacci sequence"</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1" aria-label="code-block-4-10"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pandas"</span><span class="op">,</span> <span class="st">"numpy"</span><span class="op">]</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="build-system">[build-system]<a class="anchor" aria-label="anchor" href="#build-system"></a></h3>
@@ -594,15 +594,15 @@ keys:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">TOML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode toml" tabindex="0"><code class="sourceCode toml"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="kw">[build-system]</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"setuptools"</span><span class="op">]</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="kw">[project]</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci_uos_name"</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A package which can produce the Fibonacci sequence"</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[{</span><span class="dt">name</span><span class="op"> =</span> <span class="st">"your_name"</span><span class="op">, </span><span class="dt">email</span><span class="op">=</span><span class="st">"youremail@email.com"</span><span class="op">}]</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="dt">keywords</span> <span class="op">=</span> <span class="op">[</span><span class="st">"fibonacci"</span><span class="op">,</span> <span class="st">"maths"</span><span class="op">]</span></span></code></pre>
+<pre class="sourceCode toml" tabindex="0"><code class="sourceCode toml"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="kw">[build-system]</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"setuptools"</span><span class="op">]</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1" aria-label="code-block-5-4"></a><span class="kw">[project]</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1" aria-label="code-block-5-5"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"fibonacci_uos_name"</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1" aria-label="code-block-5-6"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1" aria-label="code-block-5-7"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A package which can produce the Fibonacci sequence"</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1" aria-label="code-block-5-8"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[{</span><span class="dt">name</span><span class="op"> =</span> <span class="st">"your_name"</span><span class="op">, </span><span class="dt">email</span><span class="op">=</span><span class="st">"youremail@email.com"</span><span class="op">}]</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1" aria-label="code-block-5-9"></a><span class="dt">keywords</span> <span class="op">=</span> <span class="op">[</span><span class="st">"fibonacci"</span><span class="op">,</span> <span class="st">"maths"</span><span class="op">]</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -693,7 +693,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.20.0" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.20.1" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -715,8 +715,8 @@ any links that you are not going to use.
   "url": "https://fair2-for-research-software.github.io/FAIR4RS-Packaging/instructor/creating-packages.html",
   "identifier": "https://fair2-for-research-software.github.io/FAIR4RS-Packaging/instructor/creating-packages.html",
   "dateCreated": "2024-04-02",
-  "dateModified": "2026-04-14",
-  "datePublished": "2026-04-14"
+  "dateModified": "2026-04-21",
+  "datePublished": "2026-04-21"
 }
 
   </script><script>
