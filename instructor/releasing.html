@@ -340,7 +340,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Releasing Python Packages</h1>
-        <p>Last updated on 2026-04-28 |
+        <p>Last updated on 2026-05-05 |
 
         <a href="https://github.com/christopher-wild/FAIR4RS-Packaging/edit/main/episodes/releasing.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -603,7 +603,7 @@ alternative actions could you consider instead?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <p>Think about the impact of deleting a tag or release in version
 control. How might you preserve historical data while managing updates
@@ -617,7 +617,7 @@ to tags and releases?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Deleting a tag or release in a version control system can disrupt
 historical tracking and cause confusion for current and future
@@ -671,42 +671,42 @@ specify (such as a push, pull request, or tag creations).</p>
 <div class="callout-content">
 <p>As a reminder, here are some of the common variables used in GitHub
 Actions workflow files:</p>
-<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr class="header"><th>Variable</th>
+<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr><th>Variable</th>
 <th>Description</th>
-</tr></thead><tbody><tr class="odd"><td><code>name</code></td>
+</tr></thead><tbody><tr><td><code>name</code></td>
 <td>Specifies the name of the workflow. It helps identify the workflow
 in the GitHub Actions UI and in logs.</td>
-</tr><tr class="even"><td><code>on</code></td>
+</tr><tr><td><code>on</code></td>
 <td>Defines the event that triggers the workflow, such as
 <code>push</code>, <code>pull_request</code>, <code>schedule</code>, or
 custom events like <code>workflow_dispatch</code>.</td>
-</tr><tr class="odd"><td><code>jobs</code></td>
+</tr><tr><td><code>jobs</code></td>
 <td>Contains one or more jobs to be executed in parallel or
 sequentially. Each job represents a set of steps that run on the same
 runner.</td>
-</tr><tr class="even"><td><code>runs-on</code></td>
+</tr><tr><td><code>runs-on</code></td>
 <td>Specifies the type of machine or virtual environment where jobs will
 run, such as <code>ubuntu-latest</code>, <code>windows-latest</code>, or
 <code>macos-latest</code>.</td>
-</tr><tr class="odd"><td><code>steps</code></td>
+</tr><tr><td><code>steps</code></td>
 <td>Defines the sequence of tasks to be executed within a job. Each step
 can be a shell command, an action, or a series of commands separated by
 newlines (<code>run</code>).</td>
-</tr><tr class="even"><td><code>env</code></td>
+</tr><tr><td><code>env</code></td>
 <td>Sets environment variables that will be available to all steps in a
 job.</td>
-</tr><tr class="odd"><td><code>with</code></td>
+</tr><tr><td><code>with</code></td>
 <td>Specifies inputs or parameters for an action or a specific
 step.</td>
-</tr><tr class="even"><td><code>uses</code></td>
+</tr><tr><td><code>uses</code></td>
 <td>Specifies the action to be used in a step. It can refer to an action
 in a public repository, a published Docker container, or a specific path
 in the repository.</td>
-</tr><tr class="odd"><td><code>id</code></td>
+</tr><tr><td><code>id</code></td>
 <td>Specifies a unique identifier for a step or action output, which can
 be referenced in subsequent steps or actions
 (<code>outputs</code>).</td>
-</tr><tr class="even"><td><code>secrets</code></td>
+</tr><tr><td><code>secrets</code></td>
 <td>Allows access to encrypted secrets, such as
 <code>GITHUB_TOKEN</code>, which is automatically generated and scoped
 to the repository, used for authenticating GitHub API requests.</td>
@@ -795,7 +795,7 @@ resolve this issue.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
 <div class="accordion-body">
 <p>Does GitHub provide a way to view the output logs for a given
 workflow?</p>
@@ -808,7 +808,7 @@ workflow?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>There are several different approaches to debug this workflow. The
 first place to check would be the output log files from the workflow for
@@ -931,8 +931,8 @@ any links that you are not going to use.
   "url": "https://fair2-for-research-software.github.io/FAIR4RS-Packaging/instructor/releasing.html",
   "identifier": "https://fair2-for-research-software.github.io/FAIR4RS-Packaging/instructor/releasing.html",
   "dateCreated": "2024-04-02",
-  "dateModified": "2026-04-28",
-  "datePublished": "2026-04-28"
+  "dateModified": "2026-05-05",
+  "datePublished": "2026-05-05"
 }
 
   </script><script>
