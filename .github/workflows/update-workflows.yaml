@@ -42,6 +42,7 @@ jobs:
         id: update
         uses: carpentries/actions/update-workflows@main
         with:
+          version: v0.16.11
           clean: ${{ github.event.inputs.clean }}
 
       - name: Create Pull Request
