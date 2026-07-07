@@ -46,7 +46,6 @@ Think back to the earlier episodes and try to recall all the things that can go 
 1. Python Module - This is the directory with the Python code that does the work.
 2. Configuration File - e.g. your pyproject.toml file
 3. Other metadata files - e.g. LICENCE, README.md, citation.cff
-4. Python Tests - A directory full of unit-tests and other tests
 :::
 :::
 
@@ -57,9 +56,7 @@ In this episode we will only be creating a minimal example so many of the files 
 ├── 📂 fibonacci_uos_name/
 │   └── 📄 sequence.py
 │   └── 📄 __init__.py
-├── 📄 pyproject.toml
-└── 📂 tests/
-    └── 📄 test_fibonacci.py
+└── 📄 pyproject.toml
 ```
 
 The first thing we will do in this project is create the Python module (the actual code!).
@@ -87,15 +84,31 @@ def compute(n_terms):
 ::: challenge
 ### Using your Python module
 
-Create a script in your project directory that imports and uses your sequence script. This will serve as a good quick test that it works.
+With your Python environment activate, launch Python and test importing and using your package.
 
 ::: solution
-1. Create the file in the project folder `/fibonacci_uos_name`, for example `use_fibonacci.py`.
-2. Import and run the compute function:
+**1. Navigate to a different directory to ensure you are importing the package not the local directory**
+
+```bash
+cd ../..
+```
+
+**2. Launch Python and import package**
+
+```bash 
+python
+```
 ```python
 from fibonacci_uos_name.sequence import compute
 
 compute(5)
+```
+
+or
+```python
+import fibonacci_uos_name.sequence
+
+fibonacci_uos_name.sequence.compute(5)
 ```
 :::
 :::
@@ -157,6 +170,42 @@ keywords = ["fibonacci", "maths"]
 :::
 
 Running `python -m pip install .` will install your package. Just ensure your terminal's working directory is the same as the `pyproject.toml` file!
+
+### Project & Packaging Naming
+
+Referring back to the project structure:
+```
+📦 my_project/
+├── 📂 my_package/
+│   └── 📄 my_code.py
+│   └── 📄 __init__.py
+└── 📄 pyproject.toml
+```
+
+The name of your package directory is the name that users will import when they use the package
+
+```python
+from my_package.my_code import my_func
+
+my_func()
+```
+
+PyPI which we looked at in the [accessing packages](accessing-packages.md) episode and other tools like build which we cover later, use the project name specified in your pyproject.toml. It is common to keep these names consistent, so the package name the user installs is the same that is used to import the package.
+
+:::callout
+### Package Name Discrepency
+
+Some packages do not use the same name, one famous example is pillow. The project name is pillow but the package you import inside is PIL.
+
+```bash
+pip install pillow
+```
+
+```python
+from PIL import Image
+```
+:::
+
 
 ::: callout
 ### Editable Install
